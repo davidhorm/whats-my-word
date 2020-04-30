@@ -118,6 +118,10 @@ module.exports = {
     'eslint-comments/disable-enable-pair': ['error', { 'allowWholeFile': true }], // Allow disabling for the whole file
     'react/require-default-props': 0, // defaultProps will be deprecated. https://twitter.com/dan_abramov/status/1133878326358171650?s=20
     '@typescript-eslint/no-unused-expressions': 0, // disabling because can't do `this && that()`
+
+    // Inspired by https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
+    "import/prefer-default-export": "off",
+    "import/no-default-export": "error" // however will need default export if doing React.lazy
   },
   ignorePatterns: ['build/'],
   settings: {
