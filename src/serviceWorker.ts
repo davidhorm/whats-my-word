@@ -34,7 +34,7 @@ type Config = {
 function registerValidSW(swUrl: string, config?: Config) {
   navigator.serviceWorker
     .register(swUrl)
-    /* eslint-disable-next-line sonarjs/cognitive-complexity */
+    /* eslint-disable-next-line */
     .then((registration) => {
       /* eslint-disable-next-line no-param-reassign */
       registration.onupdatefound = () => {

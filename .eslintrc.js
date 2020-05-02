@@ -123,7 +123,10 @@ module.exports = {
     "import/prefer-default-export": "off",
     "import/no-default-export": "error" // however will need default export if doing React.lazy
   },
-  ignorePatterns: ['build/'],
+  ignorePatterns: [
+    'build/',
+    'serviceWorker.ts',
+  ],
   settings: {
     jsdoc: {
       mode: 'typescript' // Allows @template. https://github.com/gajus/eslint-plugin-jsdoc#mode
