@@ -26,7 +26,9 @@ const ScoreColumn: React.FC<props> = ({ scores, actualWordLength }) => {
       {scores?.map((score, rowIndex) => (
         <span style={{ gridArea: getScoreGridAreaName(rowIndex) }}>{score}</span>
       ))}
+      <span style={{ gridArea: GRID_AREA_NAMES.BONUS_SCORE_LABEL }}>Bonus Points:</span>
       <span style={{ gridArea: GRID_AREA_NAMES.BONUS_SCORE_VALUE }}>{bonusScore}</span>
+      <span style={{ gridArea: GRID_AREA_NAMES.FINAL_SCORE_LABEL }}>Final Score:</span>
       <span style={{ gridArea: GRID_AREA_NAMES.FINAL_SCORE_VALUE }}>{finalScore}</span>
     </>
   );
