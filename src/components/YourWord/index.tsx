@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getGridTemplateAreas } from '../../services/grid-template.service';
+import { GameWord } from '../GameWord';
 import { GuessWordRow } from '../GuessWordRow';
 
 const propTypes = {
@@ -27,6 +28,7 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
 
   return (
     <section style={gridStyle}>
+      <GameWord actualWord="choose" />
       {sampleGuessWords.map((guessWord, rowIndex) => (
         <GuessWordRow rowIndex={rowIndex} guessWord={guessWord} />
       ))}
