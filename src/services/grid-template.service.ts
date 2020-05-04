@@ -83,7 +83,8 @@ export const getScoreGridAreaName = (rowIndex: number) => `row-${rowIndex}-score
  * @param {number} letterIndex - Index of the letter position of the Guess Word.
  * @returns {string} - Text used to set the HTML class/grid area name.
  */
-export const getLetterGridAreaName = (rowIndex: number, letterIndex: number) => `row-${rowIndex}-letter-${letterIndex}`;
+export const getGuessLetterGridAreaName = (rowIndex: number, letterIndex: number) =>
+  `row-${rowIndex}-letter-${letterIndex}`;
 
 /**
  * Get the Grid Column Names for the letters of the guess word, and score column.
@@ -106,7 +107,7 @@ const getGuessLetterRows = (actualWordLength: number) => {
 
     const letterGridAreaNames = new Array(guessWordLength)
       .fill('')
-      .map((_, guessWordLetterIndex) => `${getLetterGridAreaName(rowIndex, guessWordLetterIndex)} `)
+      .map((_, guessWordLetterIndex) => `${getGuessLetterGridAreaName(rowIndex, guessWordLetterIndex)} `)
       .join('');
 
     const gridColumnNames = `${dotsBeforeLetters}${letterGridAreaNames}${dotsAfterLetters}${getScoreGridAreaName(

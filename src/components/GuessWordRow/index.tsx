@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getLetterGridAreaName } from '../../services/grid-template.service';
+import { getGuessLetterGridAreaName } from '../../services/grid-template.service';
 
 const propTypes = {
   /** The row index of the Guess Word. */
@@ -23,7 +23,7 @@ const GuessWordRow: React.FC<props> = ({ rowIndex, guessWord }) => {
     <>
       {letters &&
         letters.map((letter, letterIndex) => (
-          <span style={{ gridArea: getLetterGridAreaName(rowIndex, letterIndex) }}>{letter}</span>
+          <span style={{ gridArea: getGuessLetterGridAreaName(rowIndex, letterIndex) }}>{letter}</span>
         ))}
     </>
   );
