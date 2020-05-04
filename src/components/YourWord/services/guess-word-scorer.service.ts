@@ -1,12 +1,14 @@
+import { GUESS_WORD_START_INDEXES } from '../../../services/grid-template.service';
+
 /**
  * Get the score of the Guess Word.
  *
- * @param {number} startIndex - Start index of the Guess Word.
+ * @param {number} rowIndex - Row index of the Guess Word.
  * @param {string} guessWord - Guess Word
  * @param {string} actualWord - Actual Word
  * @returns {number} - Score of the Guess Word.
  */
-const getGuessWordScore = (startIndex: number, guessWord: string, actualWord: string): number => {
+export const getGuessWordScore = (rowIndex: number, guessWord: string, actualWord: string): number => {
   const actualLetters = actualWord.split('');
 
   const scores = guessWord
@@ -14,7 +16,7 @@ const getGuessWordScore = (startIndex: number, guessWord: string, actualWord: st
     .map((guessLetter, guessLetterIndex): string | number => {
       // if exact match, then replace letter with 1000
       // and blank corresponding letter in `actualLetters`
-      const actualLetterIndex = guessLetterIndex + startIndex;
+      const actualLetterIndex = guessLetterIndex + GUESS_WORD_START_INDEXES[rowIndex];
       if (guessLetter === actualLetters[actualLetterIndex]) {
         actualLetters[actualLetterIndex] = '';
         return 1000;
@@ -39,5 +41,3 @@ const getGuessWordScore = (startIndex: number, guessWord: string, actualWord: st
 
   return scores.reduce((sum, currentValue) => sum + currentValue);
 };
-
-export { getGuessWordScore };
