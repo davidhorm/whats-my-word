@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { getGridTemplateAreas } from '../../services/grid-template.service';
+import { ActionButton } from '../ActionButton';
 import { GameWord } from '../GameWord';
 import { GuessWordRow } from '../GuessWordRow';
 import { ScoreColumn } from '../ScoreColumn';
@@ -35,6 +36,7 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
         <GuessWordRow rowIndex={rowIndex} guessWord={guessWord} />
       ))}
       <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
+      <ActionButton action={state.currentStage} />
     </section>
   );
 };
