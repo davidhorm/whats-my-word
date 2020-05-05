@@ -4,7 +4,7 @@ import { getGridTemplateAreas } from '../../services/grid-template.service';
 import { GameWord } from '../GameWord';
 import { GuessWordRow } from '../GuessWordRow';
 import { ScoreColumn } from '../ScoreColumn';
-import { getGuessWordScore } from './services/guess-word-scorer.service';
+import { initialState, reducer } from './reducer';
 
 const propTypes = {
   /** The max length of the Actual Word. */
@@ -19,6 +19,8 @@ type props = PropTypes.InferProps<typeof propTypes>;
  * @returns {object} - I don't know yet.
  */
 const YourWord: React.FC<props> = ({ actualWordLength }) => {
+  const [state, dispatch] = React.useReducer(reducer, initialState);
+
   const gridStyle = {
     display: 'grid',
     columnGap: '1rem',
@@ -26,19 +28,13 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
     gridTemplateAreas: getGridTemplateAreas(actualWordLength),
   };
 
-  const sampleActualWord = 'choose';
-  const sampleGuessWords = ['by', 'now', 'are', 'sin', 'pus', 'hose', 'hair', 'chop', 'chops', 'house', 'choose'];
-  const scores = sampleGuessWords.map((guessWord, rowIndex) =>
-    getGuessWordScore(rowIndex, guessWord, sampleActualWord)
-  );
-
   return (
     <section style={gridStyle}>
-      <GameWord actualWord={sampleActualWord} />
-      {sampleGuessWords.map((guessWord, rowIndex) => (
+      <GameWord actualWord={state.actualWord} />
+      {state.guessWords.map((guessWord, rowIndex) => (
         <GuessWordRow rowIndex={rowIndex} guessWord={guessWord} />
       ))}
-      <ScoreColumn actualWordLength={actualWordLength} scores={scores} />
+      <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
     </section>
   );
 };
