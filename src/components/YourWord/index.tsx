@@ -36,7 +36,7 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
         <GuessWordRow rowIndex={rowIndex} guessWord={guessWord} />
       ))}
       <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
-      <ActionButton action={state.currentStage} />
+      <ActionButton action={state.currentStage} dispatch={dispatch} />
     </section>
   );
 };
