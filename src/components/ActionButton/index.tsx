@@ -31,6 +31,15 @@ const propTypes = {
 
   /** Dispatch actions when the word is confirmed. */
   dispatch: PropTypes.func.isRequired,
+
+  /** Text Field type. */
+  textFieldType: PropTypes.shape({
+    /** Type of the Text Field: text | number */
+    type: PropTypes.string.isRequired,
+
+    /** Max length of the string for type="text". */
+    maxLength: PropTypes.number,
+  }).isRequired,
 };
 
 type props = PropTypes.InferProps<typeof propTypes>;
@@ -41,7 +50,7 @@ type props = PropTypes.InferProps<typeof propTypes>;
  *
  * @returns {object} - I don't know yet.
  */
-const ActionButton: React.FC<props> = ({ action, dispatch }) => {
+const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [word, setWord] = React.useState('');
 
@@ -57,6 +66,17 @@ const ActionButton: React.FC<props> = ({ action, dispatch }) => {
   const handleConfirmDialog = () => {
     dispatch({ type: 'SET_WORD', word });
     setOpenDialog(false);
+  };
+
+  const textFieldProps = {
+    autoComplete: 'off',
+    autoFocus: true,
+    fullWidth: true,
+    label: action,
+    type: textFieldType.type,
+    inputProps: textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined,
+    helperText: textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : '',
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value),
   };
 
   return (
@@ -83,15 +103,7 @@ const ActionButton: React.FC<props> = ({ action, dispatch }) => {
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add {action}</DialogTitle>
         <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label={action}
-            type="text"
-            fullWidth
-            onChange={(event) => setWord(event.target.value)}
-          />
+          <TextField id="word" margin="dense" {...textFieldProps} />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)} color="primary">

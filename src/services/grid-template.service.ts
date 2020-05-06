@@ -86,7 +86,16 @@ export const getScoreGridAreaName = (rowIndex: number) => `row-${rowIndex}-score
 export const getGuessLetterGridAreaName = (rowIndex: number, letterIndex: number) =>
   `row-${rowIndex}-letter-${letterIndex}`;
 
+/**
+ * The guess word start index. The position in array represents the row index.
+ */
 export const GUESS_WORD_START_INDEXES = [0, 0, 1, 2, 3, 2, 1, 0, 0, 1, 0];
+
+/**
+ * The guess word lengths. Add with the actual word length to get the value.
+ * The position in the array represents the row index.
+ */
+export const GUESS_WORD_LENGTHS = [-4, -3, -3, -3, -3, -2, -2, -2, -1, -1, 0];
 
 /**
  * Get the Grid Column Names for the letters of the guess word, and score column.
@@ -95,10 +104,8 @@ export const GUESS_WORD_START_INDEXES = [0, 0, 1, 2, 3, 2, 1, 0, 0, 1, 0];
  * @returns {string[]} - Grid Column Names for the letters of the guess word, and score column.
  */
 const getGuessLetterRows = (actualWordLength: number) => {
-  const guessWordLengths = [-4, -3, -3, -3, -3, -2, -2, -2, -1, -1, 0];
-
   return GUESS_WORD_START_INDEXES.map((guessWordStartIndex, rowIndex) => {
-    const guessWordLength = actualWordLength + guessWordLengths[rowIndex];
+    const guessWordLength = actualWordLength + GUESS_WORD_LENGTHS[rowIndex];
 
     const emptySpacesBeforeLetters = guessWordStartIndex + 1;
     const dotsBeforeLetters = new Array(emptySpacesBeforeLetters).join('. ');

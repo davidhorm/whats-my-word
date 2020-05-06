@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getGridTemplateAreas } from '../../services/grid-template.service';
+import { getGridTemplateAreas, GUESS_WORD_LENGTHS } from '../../services/grid-template.service';
 import { ActionButton } from '../ActionButton';
 import { GameWord } from '../GameWord';
 import { GuessWordRow } from '../GuessWordRow';
 import { ScoreColumn } from '../ScoreColumn';
-import { initialState, reducer } from './reducer';
+import { getStageIndex, initialState, reducer } from './reducer';
 
 const propTypes = {
   /** The max length of the Actual Word. */
@@ -29,6 +29,10 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
     gridTemplateAreas: getGridTemplateAreas(actualWordLength),
   };
 
+  const stageIndex = getStageIndex(state.currentStage);
+  const maxLength = stageIndex === 0 ? actualWordLength : actualWordLength + GUESS_WORD_LENGTHS[stageIndex - 1];
+  const textFieldType = { type: 'text', maxLength };
+
   return (
     <section style={gridStyle}>
       <GameWord actualWord={state.actualWord} />
@@ -36,7 +40,7 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
         <GuessWordRow rowIndex={rowIndex} guessWord={guessWord} />
       ))}
       <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
-      <ActionButton action={state.currentStage} dispatch={dispatch} />
+      <ActionButton action={state.currentStage} dispatch={dispatch} textFieldType={textFieldType} />
     </section>
   );
 };

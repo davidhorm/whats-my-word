@@ -22,10 +22,12 @@ export const initialState = {
   guessWordScores: [] as number[],
 };
 
+export const getStageIndex = (stage: string) => stages.indexOf(stage);
+
 type actions = { type: 'SET_WORD'; word: string };
 
 export const reducer = (state: typeof initialState, action: actions): typeof initialState => {
-  const currentStageIndex = stages.indexOf(state.currentStage);
+  const currentStageIndex = getStageIndex(state.currentStage);
   if (action.type === 'SET_WORD' && currentStageIndex === 0) {
     return {
       ...state,
