@@ -53,6 +53,7 @@ type props = PropTypes.InferProps<typeof propTypes>;
 const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [word, setWord] = React.useState('');
+  const [wordLengthError, setWordLengthError] = React.useState(true);
 
   const color = 'primary';
   const theme = useTheme();
@@ -68,15 +69,21 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
     setOpenDialog(false);
   };
 
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setWord(event.target.value);
+    setWordLengthError(event.target.value.length !== textFieldType.maxLength);
+  };
+
   const textFieldProps = {
     autoComplete: 'off',
     autoFocus: true,
     fullWidth: true,
+    error: wordLengthError,
     label: action,
     type: textFieldType.type,
     inputProps: textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined,
     helperText: textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : '',
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => setWord(event.target.value),
+    onChange,
   };
 
   return (
