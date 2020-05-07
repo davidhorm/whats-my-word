@@ -1,5 +1,5 @@
 import React from 'react';
-import { YourWord } from './components/YourWord';
+import { TabPanels } from './components/TabPanels';
 
 /**
  * App component.
@@ -9,7 +9,7 @@ import { YourWord } from './components/YourWord';
 function App() {
   return (
     <main>
-      <YourWord actualWordLength={6} />
+      <TabPanels actualWordLength={6} />
     </main>
   );
 }
