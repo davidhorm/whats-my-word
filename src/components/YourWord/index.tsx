@@ -7,6 +7,26 @@ import { GuessWordRow } from '../GuessWordRow';
 import { ScoreColumn } from '../ScoreColumn';
 import { getStageIndex, initialState, reducer } from './reducer';
 
+const NUMBER_OF_GUESSES = new Array(11).fill(null);
+
+/**
+ * Get the <GuessWordRow /> component.
+ *
+ * @param {number} actualWordLength - The max length of the Actual Word.
+ * @param {string[]} guessWords - List of guess words.
+ * @returns {object} - <GuessWordRow />
+ */
+const getGuessWordRow = (actualWordLength: number, guessWords: string[]) => (_: any, rowIndex: number) => {
+  const guessWord = guessWords[rowIndex];
+  return (
+    <GuessWordRow
+      rowIndex={rowIndex}
+      guessWord={guessWord}
+      guessWordLength={actualWordLength + GUESS_WORD_LENGTHS[rowIndex]}
+    />
+  );
+};
+
 const propTypes = {
   /** The max length of the Actual Word. */
   actualWordLength: PropTypes.number.isRequired,
@@ -36,9 +56,7 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
   return (
     <section style={gridStyle}>
       <GameWord actualWord={state.actualWord} />
-      {state.guessWords.map((guessWord, rowIndex) => (
-        <GuessWordRow rowIndex={rowIndex} guessWord={guessWord} />
-      ))}
+      {NUMBER_OF_GUESSES.map(getGuessWordRow(actualWordLength, state.guessWords))}
       <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
       <ActionButton action={state.currentStage} dispatch={dispatch} textFieldType={textFieldType} />
     </section>
