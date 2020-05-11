@@ -27,6 +27,19 @@ const getGuessWordRow = (actualWordLength: number, guessWords: string[]) => (_: 
   );
 };
 
+/**
+ * Get the `textFieldType` prop for <ActionButton />.
+ *
+ * @param {number} actualWordLength - The max length of the Actual Word.
+ * @param {string} currentStage - The current game stage for the <ActionButton />
+ * @returns {object} - {type, maxLength}
+ */
+const getTextFieldType = (actualWordLength: number, currentStage: string) => {
+  const stageIndex = getStageIndex(currentStage);
+  const maxLength = stageIndex === 0 ? actualWordLength : actualWordLength + GUESS_WORD_LENGTHS[stageIndex - 1];
+  return { type: 'text', maxLength };
+};
+
 const propTypes = {
   /** The max length of the Actual Word. */
   actualWordLength: PropTypes.number.isRequired,
@@ -49,16 +62,18 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
     gridTemplateAreas: getGridTemplateAreas(actualWordLength),
   };
 
-  const stageIndex = getStageIndex(state.currentStage);
-  const maxLength = stageIndex === 0 ? actualWordLength : actualWordLength + GUESS_WORD_LENGTHS[stageIndex - 1];
-  const textFieldType = { type: 'text', maxLength };
+  const actionButtonProps = {
+    action: state.currentStage,
+    dispatch,
+    textFieldType: getTextFieldType(actualWordLength, state.currentStage),
+  };
 
   return (
     <section style={gridStyle}>
       <GameWord actualWord={state.actualWord} />
       {NUMBER_OF_GUESSES.map(getGuessWordRow(actualWordLength, state.guessWords))}
       <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
-      <ActionButton action={state.currentStage} dispatch={dispatch} textFieldType={textFieldType} />
+      <ActionButton {...actionButtonProps} />
     </section>
   );
 };
