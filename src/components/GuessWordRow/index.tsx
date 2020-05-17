@@ -1,6 +1,29 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getGuessLetterGridAreaName } from '../../services/grid-template.service';
+
+/**
+ * Returns an array to be deconstructed as [before, after].
+ * `before` is the number of empty spaces before the letters.
+ * `after` is the number of empty spaces after the letters.
+ *
+ * @param {number} rowIndex - Guess Word row index.
+ * @returns {number[]} - number of cells [before, after] the letters.
+ */
+const getNumberOfEmptyCells = (rowIndex: number) => {
+  return [
+    [0, 4],
+    [0, 3],
+    [1, 2],
+    [2, 1],
+    [3, 0],
+    [2, 0],
+    [1, 1],
+    [0, 2],
+    [0, 1],
+    [1, 0],
+    [0, 0],
+  ][rowIndex];
+};
 
 const propTypes = {
   /** The row index of the Guess Word. */
@@ -9,8 +32,8 @@ const propTypes = {
   /** The Guess Word. */
   guessWord: PropTypes.string,
 
-  /** The Guess Word length. Used to fill cells with blanks when the guess word is empty. */
-  guessWordLength: PropTypes.number.isRequired,
+  /** The Guess Word Score. */
+  guessWordScore: PropTypes.number,
 };
 
 type props = PropTypes.InferProps<typeof propTypes>;
@@ -20,14 +43,18 @@ type props = PropTypes.InferProps<typeof propTypes>;
  *
  * @returns {object} - a bunch of <span> tags
  */
-const GuessWordRow: React.FC<props> = ({ rowIndex, guessWord, guessWordLength }) => {
-  const letters = guessWord ? guessWord.split('') : new Array(guessWordLength).fill(null);
+const GuessWordRow: React.FC<props> = ({ rowIndex, guessWord, guessWordScore }) => {
+  const [before, after] = getNumberOfEmptyCells(rowIndex);
+  const letters = new Array(before).fill('').concat(guessWord?.split('')).concat(new Array(after).fill(''));
+
   return (
-    <>
-      {letters.map((letter, letterIndex) => (
-        <span style={{ gridArea: getGuessLetterGridAreaName(rowIndex, letterIndex) }}>{letter}&nbsp;</span>
-      ))}
-    </>
+    <tr>
+      {letters.map((letter: string, letterIndex: number) => {
+        const key = `letter-${rowIndex}-${letterIndex}`;
+        return <td key={key}>{letter}&nbsp;</td>;
+      })}
+      <td>{guessWordScore}</td>
+    </tr>
   );
 };
 

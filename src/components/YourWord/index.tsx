@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getGridTemplateAreas, GUESS_WORD_LENGTHS } from '../../services/grid-template.service';
+import { GUESS_WORD_LENGTHS } from '../../services/grid-template.service';
 import { ActionButton } from '../ActionButton';
 import { GameWord } from '../GameWord';
 import { GuessWordRow } from '../GuessWordRow';
-import { ScoreColumn } from '../ScoreColumn';
 import { getStageIndex, initialState, reducer } from './reducer';
 
 const NUMBER_OF_GUESSES = new Array(11).fill(null);
@@ -12,20 +11,19 @@ const NUMBER_OF_GUESSES = new Array(11).fill(null);
 /**
  * Get the <GuessWordRow /> component.
  *
- * @param {number} actualWordLength - The max length of the Actual Word.
  * @param {string[]} guessWords - List of guess words.
+ * @param {number[]} guessWordScores - List of scores for the guess word.
  * @returns {object} - <GuessWordRow />
  */
-const getGuessWordRow = (actualWordLength: number, guessWords: string[]) => (_: any, rowIndex: number) => {
-  const guessWord = guessWords[rowIndex];
-  return (
-    <GuessWordRow
-      rowIndex={rowIndex}
-      guessWord={guessWord}
-      guessWordLength={actualWordLength + GUESS_WORD_LENGTHS[rowIndex]}
-    />
-  );
-};
+const getGuessWordRow = (guessWords: string[], guessWordScores: number[]) => (_: any, rowIndex: number) => (
+  <GuessWordRow
+    /* eslint-disable-next-line react/no-array-index-key*/
+    key={`word-${rowIndex}-${guessWords[rowIndex]}`}
+    rowIndex={rowIndex}
+    guessWord={guessWords[rowIndex]}
+    guessWordScore={guessWordScores[rowIndex]}
+  />
+);
 
 /**
  * Get the `textFieldType` prop for <ActionButton />.
@@ -55,13 +53,6 @@ type props = PropTypes.InferProps<typeof propTypes>;
 const YourWord: React.FC<props> = ({ actualWordLength }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  const gridStyle = {
-    display: 'grid',
-    columnGap: '1rem',
-    gridTemplateColumns: '1rem',
-    gridTemplateAreas: getGridTemplateAreas(actualWordLength),
-  };
-
   const actionButtonProps = {
     action: state.currentStage,
     dispatch,
@@ -69,12 +60,16 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
   };
 
   return (
-    <section style={gridStyle}>
-      <GameWord actualWord={state.actualWord} />
-      {NUMBER_OF_GUESSES.map(getGuessWordRow(actualWordLength, state.guessWords))}
-      <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} />
+    <>
+      <table>
+        <tbody>
+          <GameWord actualWord={state.actualWord} />
+          {NUMBER_OF_GUESSES.map(getGuessWordRow(state.guessWords, state.guessWordScores))}
+        </tbody>
+      </table>
+      {/* <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} /> */}
       <ActionButton {...actionButtonProps} />
-    </section>
+    </>
   );
 };
 

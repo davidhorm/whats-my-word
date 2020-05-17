@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { getActualLetterGridAreaName } from '../../services/grid-template.service';
 
 const propTypes = {
   /** The Actual Word. */
@@ -18,11 +17,11 @@ const GameWord: React.FC<props> = ({ actualWord }) => {
   const actualLetters = actualWord?.split('');
 
   return (
-    <>
+    <tr>
       {actualLetters?.map((actualLetter, actualLetterIndex) => (
-        <span style={{ gridArea: getActualLetterGridAreaName(actualLetterIndex) }}>{actualLetter}</span>
+        <td key={`actual-${actualLetterIndex}`}>{actualLetter}</td>
       ))}
-    </>
+    </tr>
   );
 };
 
