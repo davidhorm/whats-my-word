@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { GUESS_WORD_LENGTHS } from '../../services/grid-template.service';
 import { ActionButton } from '../ActionButton';
+import { FinalScoreRows } from '../FinalScoreRows';
 import { GameWord } from '../GameWord';
 import { GuessWordRow } from '../GuessWordRow';
 import { getStageIndex, initialState, reducer } from './reducer';
@@ -65,9 +66,9 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
         <tbody>
           <GameWord actualWord={state.actualWord} />
           {NUMBER_OF_GUESSES.map(getGuessWordRow(state.guessWords, state.guessWordScores))}
+          <FinalScoreRows actualWordLength={actualWordLength} scores={state.guessWordScores} />
         </tbody>
       </table>
-      {/* <ScoreColumn actualWordLength={actualWordLength} scores={state.guessWordScores} /> */}
       <ActionButton {...actionButtonProps} />
     </>
   );
