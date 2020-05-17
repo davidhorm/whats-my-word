@@ -53,6 +53,7 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [word, setWord] = React.useState('');
   const [wordLengthError, setWordLengthError] = React.useState(true);
+  const [score, setScore] = React.useState(0);
 
   const color = 'primary';
   const theme = useTheme();
@@ -64,13 +65,17 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   };
 
   const handleConfirmDialog = () => {
-    dispatch({ type: 'SET_WORD', word });
+    textFieldType.type === 'text' ? dispatch({ type: 'SET_WORD', word }) : dispatch({ type: 'SET_SCORE', score });
     setOpenDialog(false);
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setWord(event.target.value);
-    setWordLengthError(event.target.value.length !== textFieldType.maxLength);
+    if (textFieldType.type === 'text') {
+      setWord(event.target.value);
+      setWordLengthError(event.target.value.length !== textFieldType.maxLength);
+    } else if (textFieldType.type === 'number') {
+      setScore(Number.parseInt(event.target.value, 10));
+    }
   };
 
   return (
