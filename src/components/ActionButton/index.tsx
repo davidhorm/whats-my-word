@@ -74,27 +74,13 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
     setWordLengthError(event.target.value.length !== textFieldType.maxLength);
   };
 
-  const textFieldProps = {
-    autoComplete: 'off',
-    autoFocus: true,
-    fullWidth: true,
-    error: wordLengthError,
-    label: action,
-    type: textFieldType.type,
-    inputProps: textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined,
-    helperText: textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : '',
-    onChange,
-  };
-
   return (
     <>
       <Zoom
         key={color}
         in={inValue}
         timeout={transitionDuration}
-        style={{
-          transitionDelay: `${inValue ? transitionDuration.exit : 0}ms`,
-        }}
+        style={{ transitionDelay: `${inValue ? transitionDuration.exit : 0}ms` }}
         unmountOnExit
       >
         <Fab
@@ -110,7 +96,19 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add {action}</DialogTitle>
         <DialogContent>
-          <TextField id="word" margin="dense" {...textFieldProps} />
+          <TextField
+            id="word"
+            margin="dense"
+            autoComplete="off"
+            autoFocus
+            fullWidth
+            error={wordLengthError}
+            label={action}
+            type={textFieldType.type}
+            inputProps={textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined}
+            helperText={textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : ''}
+            onChange={onChange}
+          />
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setOpenDialog(false)} color="primary">

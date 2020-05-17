@@ -54,12 +54,6 @@ type props = PropTypes.InferProps<typeof propTypes>;
 const YourWord: React.FC<props> = ({ actualWordLength }) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
-  const actionButtonProps = {
-    action: state.currentStage,
-    dispatch,
-    textFieldType: getTextFieldType(actualWordLength, state.currentStage),
-  };
-
   return (
     <>
       <table>
@@ -69,7 +63,11 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
           <FinalScoreRows actualWordLength={actualWordLength} scores={state.guessWordScores} />
         </tbody>
       </table>
-      <ActionButton {...actionButtonProps} />
+      <ActionButton
+        action={state.currentStage}
+        dispatch={dispatch}
+        textFieldType={getTextFieldType(actualWordLength, state.currentStage)}
+      />
     </>
   );
 };
