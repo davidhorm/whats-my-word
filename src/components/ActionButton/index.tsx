@@ -71,7 +71,7 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (textFieldType.type === 'text') {
-      setWord(event.target.value);
+      setWord(event.target.value.toUpperCase());
       setWordLengthError(event.target.value.length !== textFieldType.maxLength);
     } else if (textFieldType.type === 'number') {
       setScore(Number.parseInt(event.target.value, 10));
