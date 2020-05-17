@@ -51,7 +51,7 @@ const GuessWordRow: React.FC<props> = ({ rowIndex, guessWord, guessWordScore }) 
     <tr>
       {letters.map((letter: string, letterIndex: number) => {
         const key = `letter-${rowIndex}-${letterIndex}`;
-        return <td key={key}>{letter}&nbsp;</td>;
+        return <td key={key}>{letter || <span>&nbsp;</span>}</td>;
       })}
       <td>{guessWordScore}</td>
     </tr>
