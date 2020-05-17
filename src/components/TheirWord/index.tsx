@@ -40,9 +40,9 @@ const getGuessWordRow = (actualWordLength: number, guessWords: string[], guessWo
  * @returns {object} - {type, maxLength}
  */
 const getTextFieldType = (actualWordLength: number, currentStage: string) => {
-  if (currentStage === 'Their Word' || currentStage.includes('Your Guess')) {
+  if (currentStage.includes('Your Guess')) {
     const stageIndex = getStageIndex(currentStage);
-    const maxLength = actualWordLength + GUESS_WORD_LENGTHS[stageIndex];
+    const maxLength = actualWordLength + GUESS_WORD_LENGTHS[stageIndex / 2];
     return { type: 'text', maxLength };
   }
 
