@@ -21,6 +21,7 @@ const stages = [
   'Your Score 10',
   'Your Guess 11',
   'Your Score 11',
+  'END',
 ];
 
 export const initialState = {

@@ -13,6 +13,7 @@ const stages = [
   'Their Guess 9',
   'Their Guess 10',
   'Their Guess 11',
+  'END',
 ];
 
 export const initialState = {

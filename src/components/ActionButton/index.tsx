@@ -80,23 +80,25 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
 
   return (
     <>
-      <Zoom
-        key={color}
-        in={inValue}
-        timeout={transitionDuration}
-        style={{ transitionDelay: `${inValue ? transitionDuration.exit : 0}ms` }}
-        unmountOnExit
-      >
-        <Fab
-          variant="extended"
-          aria-label={`+ ${action}`}
-          color={color}
-          className={classes.fab}
-          onClick={() => setOpenDialog(true)}
+      {action !== 'END' && (
+        <Zoom
+          key={color}
+          in={inValue}
+          timeout={transitionDuration}
+          style={{ transitionDelay: `${inValue ? transitionDuration.exit : 0}ms` }}
+          unmountOnExit
         >
-          <AddIcon className={classes.extendedIcon} /> {action}
-        </Fab>
-      </Zoom>
+          <Fab
+            variant="extended"
+            aria-label={`+ ${action}`}
+            color={color}
+            className={classes.fab}
+            onClick={() => setOpenDialog(true)}
+          >
+            <AddIcon className={classes.extendedIcon} /> {action}
+          </Fab>
+        </Zoom>
+      )}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add {action}</DialogTitle>
         <DialogContent>
