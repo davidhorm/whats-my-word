@@ -7,8 +7,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.gameTab {
+  max-width: 425px;
+  padding: 16px;
+}
+
 .gameTable {
   font-family: 'Roboto Mono', monospace;
   width: 100%;
-  max-width: 425px;
 }

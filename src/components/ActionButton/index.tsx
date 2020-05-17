@@ -15,8 +15,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     fab: {
       margin: theme.spacing(1),
-      position: 'absolute',
-      bottom: theme.spacing(2),
+      position: 'relative',
       right: theme.spacing(2),
     },
     extendedIcon: {

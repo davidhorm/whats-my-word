@@ -4,6 +4,7 @@ import Tabs from '@material-ui/core/Tabs';
 import PropTypes from 'prop-types';
 import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
+import '../../index.css';
 import { TheirWord } from '../TheirWord';
 import { YourWord } from '../YourWord';
 
@@ -50,10 +51,10 @@ const TabPanels: React.FC<props> = ({ actualWordLength }) => {
         </Tabs>
       </AppBar>
       <SwipeableViews enableMouseEvents index={tabValue} onChangeIndex={(index: number) => setTabValue(index)}>
-        <section hidden={tabValue !== 0} {...tabPanelProps('Your Word')}>
+        <section className="gameTab" hidden={tabValue !== 0} {...tabPanelProps('Your Word')}>
           <YourWord actualWordLength={actualWordLength} />
         </section>
-        <section hidden={tabValue !== 1} {...tabPanelProps('Their Word')}>
+        <section className="gameTab" hidden={tabValue !== 1} {...tabPanelProps('Their Word')}>
           <TheirWord actualWordLength={actualWordLength} />
         </section>
       </SwipeableViews>
