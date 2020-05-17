@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import '../../index.css';
 
 /**
  * Returns an array to be deconstructed as [before, after].
@@ -25,9 +26,15 @@ const getNumberOfEmptyCells = (rowIndex: number) => {
   ][rowIndex];
 };
 
+const emptyCell = <span>&nbsp;</span>;
+const getEmptyCells = (length: number) => new Array(length).fill(emptyCell);
+
 const propTypes = {
   /** The row index of the Guess Word. */
   rowIndex: PropTypes.number.isRequired,
+
+  /** The max length of the Actual Word. */
+  actualWordLength: PropTypes.number.isRequired,
 
   /** The Guess Word. */
   guessWord: PropTypes.string,
@@ -43,15 +50,23 @@ type props = PropTypes.InferProps<typeof propTypes>;
  *
  * @returns {object} - a bunch of <span> tags
  */
-const GuessWordRow: React.FC<props> = ({ rowIndex, guessWord, guessWordScore }) => {
+const GuessWordRow: React.FC<props> = ({ actualWordLength, rowIndex, guessWord, guessWordScore }) => {
   const [before, after] = getNumberOfEmptyCells(rowIndex);
-  const letters = new Array(before).fill('').concat(guessWord?.split('')).concat(new Array(after).fill(''));
+  const letters = getEmptyCells(before)
+    .concat(guessWord?.split('') || getEmptyCells(actualWordLength - after))
+    .concat(getEmptyCells(after));
+
+  const isGuessLetter = (letterIndex: number) => before <= letterIndex && letterIndex < actualWordLength - after;
 
   return (
     <tr>
       {letters.map((letter: string, letterIndex: number) => {
         const key = `letter-${rowIndex}-${letterIndex}`;
-        return <td key={key}>{letter || <span>&nbsp;</span>}</td>;
+        return (
+          <td key={key} className={isGuessLetter(letterIndex) ? 'guessLetter' : undefined}>
+            {letter || emptyCell}
+          </td>
+        );
       })}
       <td>{guessWordScore}</td>
     </tr>

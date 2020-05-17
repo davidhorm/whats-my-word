@@ -13,15 +13,20 @@ const NUMBER_OF_GUESSES = new Array(11).fill(null);
 /**
  * Get the <GuessWordRow /> component.
  *
+ * @param {number} actualWordLength - The max length of the Actual Word.
  * @param {string[]} guessWords - List of guess words.
  * @param {number[]} guessWordScores - List of scores for the guess word.
  * @returns {object} - <GuessWordRow />
  */
-const getGuessWordRow = (guessWords: string[], guessWordScores: number[]) => (_: any, rowIndex: number) => (
+const getGuessWordRow = (actualWordLength: number, guessWords: string[], guessWordScores: number[]) => (
+  _: any,
+  rowIndex: number
+) => (
   <GuessWordRow
     /* eslint-disable-next-line react/no-array-index-key*/
     key={`word-${rowIndex}-${guessWords[rowIndex]}`}
     rowIndex={rowIndex}
+    actualWordLength={actualWordLength}
     guessWord={guessWords[rowIndex]}
     guessWordScore={guessWordScores[rowIndex]}
   />
@@ -60,7 +65,7 @@ const YourWord: React.FC<props> = ({ actualWordLength }) => {
       <table className="gameTable">
         <tbody>
           <GameWord actualWord={state.actualWord} />
-          {NUMBER_OF_GUESSES.map(getGuessWordRow(state.guessWords, state.guessWordScores))}
+          {NUMBER_OF_GUESSES.map(getGuessWordRow(actualWordLength, state.guessWords, state.guessWordScores))}
           <FinalScoreRows actualWordLength={actualWordLength} scores={state.guessWordScores} />
         </tbody>
       </table>
