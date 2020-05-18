@@ -10,6 +10,7 @@ import Zoom from '@material-ui/core/Zoom';
 import AddIcon from '@material-ui/icons/Add';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useEvent } from './use-event.effect';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -64,6 +65,9 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
     exit: theme.transitions.duration.leavingScreen,
   };
 
+  // Scroll to the dialog input when mobile keyboard resizes the window
+  useEvent('resize', () => document?.activeElement?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+
   const handleConfirmDialog = () => {
     textFieldType.type === 'text' ? dispatch({ type: 'SET_WORD', word }) : dispatch({ type: 'SET_SCORE', score });
     setOpenDialog(false);
@@ -114,7 +118,6 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
             inputProps={textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined}
             helperText={textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : ''}
             onChange={onChange}
-            onFocus={(event) => event.target.scrollIntoView({ behavior: 'smooth', block: 'center' })}
           />
         </DialogContent>
         <DialogActions>
