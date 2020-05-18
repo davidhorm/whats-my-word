@@ -66,7 +66,16 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   };
 
   // Scroll to the dialog input when mobile keyboard resizes the window
-  useEvent('resize', () => document?.activeElement?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+  const [hasFocus, setHasFocus] = React.useState(false);
+  const [hasResize, setHasResize] = React.useState(false);
+  useEvent('resize', () => setHasResize(true));
+  React.useEffect(() => {
+    if (hasFocus && hasResize) {
+      document?.activeElement?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setHasFocus(false);
+      setHasResize(false);
+    }
+  }, [hasFocus, hasResize]);
 
   const handleConfirmDialog = () => {
     textFieldType.type === 'text' ? dispatch({ type: 'SET_WORD', word }) : dispatch({ type: 'SET_SCORE', score });
@@ -118,6 +127,7 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
             inputProps={textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined}
             helperText={textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : ''}
             onChange={onChange}
+            onFocus={() => setHasFocus(true)}
           />
         </DialogContent>
         <DialogActions>
