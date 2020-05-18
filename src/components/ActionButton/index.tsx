@@ -114,6 +114,7 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
             inputProps={textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined}
             helperText={textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : ''}
             onChange={onChange}
+            onFocus={(event) => event.target.scrollIntoView({ behavior: 'smooth', block: 'center' })}
           />
         </DialogContent>
         <DialogActions>
