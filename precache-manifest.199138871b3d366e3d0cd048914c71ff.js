@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "821d5384c4d282879cad5d902c215e1a",
+    "revision": "aafa48ed76a757398ada14ae93a0e253",
     "url": "/whats-my-word/index.html"
   },
   {
-    "revision": "6ea5f023649ce63fd5de",
+    "revision": "2e4e39a205d0da68a1a3",
     "url": "/whats-my-word/static/css/main.8e47adf6.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/whats-my-word/static/js/2.a25d4ddc.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "6ea5f023649ce63fd5de",
-    "url": "/whats-my-word/static/js/main.bfb08040.chunk.js"
+    "revision": "2e4e39a205d0da68a1a3",
+    "url": "/whats-my-word/static/js/main.0fb0d082.chunk.js"
   },
   {
     "revision": "77c51c65574c9f0a6b98",
