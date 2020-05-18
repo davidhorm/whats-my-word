@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/whats-my-word/static/css/main.8e47adf6.chunk.css",
-    "main.js": "/whats-my-word/static/js/main.e71f3bc1.chunk.js",
-    "main.js.map": "/whats-my-word/static/js/main.e71f3bc1.chunk.js.map",
+    "main.js": "/whats-my-word/static/js/main.cdcf9446.chunk.js",
+    "main.js.map": "/whats-my-word/static/js/main.cdcf9446.chunk.js.map",
     "runtime-main.js": "/whats-my-word/static/js/runtime-main.e5934744.js",
     "runtime-main.js.map": "/whats-my-word/static/js/runtime-main.e5934744.js.map",
-    "static/js/2.ff197210.chunk.js": "/whats-my-word/static/js/2.ff197210.chunk.js",
-    "static/js/2.ff197210.chunk.js.map": "/whats-my-word/static/js/2.ff197210.chunk.js.map",
+    "static/js/2.a25d4ddc.chunk.js": "/whats-my-word/static/js/2.a25d4ddc.chunk.js",
+    "static/js/2.a25d4ddc.chunk.js.map": "/whats-my-word/static/js/2.a25d4ddc.chunk.js.map",
     "index.html": "/whats-my-word/index.html",
-    "precache-manifest.873eae70369068ef8ca5377a2d4cbb7a.js": "/whats-my-word/precache-manifest.873eae70369068ef8ca5377a2d4cbb7a.js",
+    "precache-manifest.b44b9de6ac5476769bf31481789adefa.js": "/whats-my-word/precache-manifest.b44b9de6ac5476769bf31481789adefa.js",
     "service-worker.js": "/whats-my-word/service-worker.js",
     "static/css/main.8e47adf6.chunk.css.map": "/whats-my-word/static/css/main.8e47adf6.chunk.css.map",
-    "static/js/2.ff197210.chunk.js.LICENSE.txt": "/whats-my-word/static/js/2.ff197210.chunk.js.LICENSE.txt"
+    "static/js/2.a25d4ddc.chunk.js.LICENSE.txt": "/whats-my-word/static/js/2.a25d4ddc.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.e5934744.js",
-    "static/js/2.ff197210.chunk.js",
+    "static/js/2.a25d4ddc.chunk.js",
     "static/css/main.8e47adf6.chunk.css",
-    "static/js/main.e71f3bc1.chunk.js"
+    "static/js/main.cdcf9446.chunk.js"
   ]
 }
