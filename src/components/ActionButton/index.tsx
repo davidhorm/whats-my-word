@@ -52,9 +52,7 @@ type props = PropTypes.InferProps<typeof propTypes>;
  */
 const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
-  const [word, setWord] = React.useState('');
-  const [wordLengthError, setWordLengthError] = React.useState(true);
-  const [score, setScore] = React.useState(0);
+  const [errorMessage, setErrorMessage] = React.useState('');
 
   const color = 'primary';
   const theme = useTheme();
@@ -83,17 +81,75 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
     setTimeout(() => document?.activeElement?.scrollIntoView({ behavior: 'smooth', block: 'center' }), 500)
   );
 
-  const handleConfirmDialog = () => {
-    textFieldType.type === 'text' ? dispatch({ type: 'SET_WORD', word }) : dispatch({ type: 'SET_SCORE', score });
-    setOpenDialog(false);
-  };
+  const inputElement = React.useRef<HTMLInputElement>(null);
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (textFieldType.type === 'text') {
-      setWord(event.target.value.toUpperCase());
-      setWordLengthError(event.target.value.length !== textFieldType.maxLength);
-    } else if (textFieldType.type === 'number') {
-      setScore(Number.parseInt(event.target.value, 10));
+  const WordInput = () => (
+    <TextField
+      id="word"
+      inputRef={inputElement}
+      margin="dense"
+      autoComplete="off"
+      autoFocus
+      fullWidth
+      error={errorMessage.length > 0}
+      helperText={errorMessage || `Word Length: ${textFieldType.maxLength} letters`}
+      label={action}
+      type={textFieldType.type}
+      inputProps={{
+        pattern: '^[A-Za-z]+',
+        minLength: textFieldType.maxLength,
+        maxLength: textFieldType.maxLength,
+      }}
+    />
+  );
+
+  const ScoreInput = () => (
+    <TextField
+      id="score"
+      inputRef={inputElement}
+      margin="dense"
+      autoComplete="off"
+      autoFocus
+      fullWidth
+      error={errorMessage.length > 0}
+      helperText={errorMessage}
+      label={action}
+      type={textFieldType.type}
+      inputProps={{
+        maxLength: 4,
+        inputmode: 'numeric',
+        pattern: '[0-9]*',
+        min: 0,
+        max: 9750,
+        step: 250,
+      }}
+    />
+  );
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (!inputElement.current) {
+      return;
+    }
+
+    const { validity, value } = inputElement.current;
+
+    // Text errors
+    validity.patternMismatch && setErrorMessage('Only letters allowed.');
+    validity.tooShort && setErrorMessage(`Word needs to be ${textFieldType.maxLength} letters.`);
+
+    // Number errors
+    validity.rangeOverflow && setErrorMessage('No way you scored that high.');
+    validity.rangeUnderflow && setErrorMessage('No way you scored that low.');
+    validity.stepMismatch && setErrorMessage('Scores are increments of 250.');
+
+    if (validity.valid) {
+      textFieldType.type === 'text'
+        ? dispatch({ type: 'SET_WORD', word: value.toUpperCase() })
+        : dispatch({ type: 'SET_SCORE', score: Number.parseInt(value, 10) });
+      setOpenDialog(false);
+      setErrorMessage('');
     }
   };
 
@@ -120,30 +176,17 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
       )}
       <Dialog open={openDialog} onClose={() => setOpenDialog(false)} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Add {action}</DialogTitle>
-        <DialogContent>
-          <TextField
-            id="word"
-            margin="dense"
-            autoComplete="off"
-            autoFocus
-            fullWidth
-            error={wordLengthError}
-            label={action}
-            type={textFieldType.type}
-            inputProps={textFieldType.maxLength ? { maxLength: textFieldType.maxLength } : undefined}
-            helperText={textFieldType.maxLength ? `Word Length ${textFieldType.maxLength}` : ''}
-            onChange={onChange}
-            // onFocus={() => setHasFocus(true)}
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setOpenDialog(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleConfirmDialog} color="primary">
-            OK
-          </Button>
-        </DialogActions>
+        <form noValidate onSubmit={handleSubmit}>
+          <DialogContent>{textFieldType.type === 'text' ? <WordInput /> : <ScoreInput />}</DialogContent>
+          <DialogActions>
+            <Button onClick={() => setOpenDialog(false)} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" color="primary">
+              OK
+            </Button>
+          </DialogActions>
+        </form>
       </Dialog>
     </>
   );
