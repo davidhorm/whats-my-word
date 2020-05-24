@@ -30,7 +30,6 @@ const FinalScoreRows: React.FC<props> = ({ scores, actualWordLength }) => {
         <td colSpan={actualWordLength}>Final Score:</td>
         <td>{finalScore}</td>
       </tr>
-      <span />
     </>
   );
 };
