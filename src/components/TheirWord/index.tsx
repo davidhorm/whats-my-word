@@ -68,7 +68,7 @@ const TheirWord: React.FC<props> = ({ actualWordLength }) => {
     <>
       <table className="gameTable">
         <tbody>
-          <GameWord actualWord="------" />
+          <GameWord actualWord={new Array(actualWordLength).fill('-').join('')} />
           {NUMBER_OF_GUESSES.map(getGuessWordRow(actualWordLength, state.guessWords, state.guessWordScores))}
           <FinalScoreRows actualWordLength={actualWordLength} scores={state.guessWordScores} />
         </tbody>
