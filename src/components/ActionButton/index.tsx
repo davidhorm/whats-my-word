@@ -48,7 +48,7 @@ type props = PropTypes.InferProps<typeof propTypes>;
  * <ActionButton /> draws the floating action button for the user to perform the main interaction.
  * Clicking on the button will display an input modal to either either a word, or score.
  *
- * @returns {object} - I don't know yet.
+ * @returns {object} - A button that opens a Dialog.
  */
 const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
   const [openDialog, setOpenDialog] = React.useState(false);
@@ -92,8 +92,8 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
       autoFocus
       fullWidth
       error={errorMessage.length > 0}
-      helperText={errorMessage || `Word Length: ${textFieldType.maxLength} letters`}
-      label={action}
+      helperText={errorMessage}
+      label={`Guess ${textFieldType.maxLength}-letter word`}
       type={textFieldType.type}
       inputProps={{
         pattern: '^[A-Za-z]+',
