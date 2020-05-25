@@ -117,7 +117,7 @@ const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
       type={textFieldType.type}
       inputProps={{
         maxLength: 4,
-        inputmode: 'numeric',
+        inputMode: 'numeric',
         pattern: '[0-9]*',
         min: 0,
         max: 9750,
