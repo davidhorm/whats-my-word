@@ -17,14 +17,14 @@ describe('<YourWord />', () => {
       const addButton = screen.getByLabelText('+ Your Word');
       fireEvent.click(addButton);
 
-      const input = screen.getByRole('textbox', { name: 'Your Word' });
+      const input = screen.getByRole('textbox', { name: 'Guess 6-letter word' });
       fireEvent.change(input, { target: { value: 'abcdef' } });
 
       const okButton = screen.getByRole('button', { name: 'OK' });
       fireEvent.click(okButton);
 
-      expect(screen.queryByText('g')).not.toBeInTheDocument();
-      expect(screen.queryByText('a')).toBeInTheDocument();
+      expect(screen.queryByText('G')).not.toBeInTheDocument();
+      expect(screen.getByText('A')).toBeInTheDocument();
 
       // TODO: finish writing tests.
     });
