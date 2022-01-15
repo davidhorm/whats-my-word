@@ -46,12 +46,6 @@ module.exports = {
     'plugin:eslint-comments/recommended',
 
     /**
-     * JSDoc linting rules for ESLint.
-     * https://github.com/gajus/eslint-plugin-jsdoc#configuration
-     */
-    'plugin:jsdoc/recommended',
-
-    /**
      * 'plugin:jest/recommended' plugin exports a recommended configuration that enforces good testing practices.
      * 'plugin:jest/style' adds some stylistic rules, such as `prefer-to-be-null`, which enforces usage of `toBeNull` over `toBe(null)`.
      * https://github.com/jest-community/eslint-plugin-jest#rules
@@ -64,6 +58,11 @@ module.exports = {
      * https://github.com/SonarSource/eslint-plugin-sonarjs#eslint-plugin-sonarjs----
      */
     'plugin:sonarjs/recommended',
+
+    /**
+     * https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/react-in-jsx-scope.md#when-not-to-use-it
+     */
+    "plugin:react/jsx-runtime",
 
     /**
      * THESE PRETTIER RULES SHOULD ALWAYS BE LAST CONFIG IN EXTENDS ARRAY!
@@ -92,7 +91,6 @@ module.exports = {
     '@typescript-eslint',
     'eslint-plugin',
     'jest',
-    'jsdoc',
     'jsx-a11y',
     'no-loops',
     'react',
@@ -127,9 +125,4 @@ module.exports = {
     'build/',
     'serviceWorker.ts',
   ],
-  settings: {
-    jsdoc: {
-      mode: 'typescript' // Allows @template. https://github.com/gajus/eslint-plugin-jsdoc#mode
-    }
-  }
 };
