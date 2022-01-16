@@ -1,11 +1,11 @@
 import sixLetterWords from '../../wordList/6-letter-words.json';
 import sevenLetterWords from '../../wordList/7-letter-words.json';
 import {
+  FOR_TESTING,
   GenerateGameWordCode,
   GenerateRandomGameWordCode,
   GetGameWordCodeValidationRule,
   TransformToGameWord,
-  _for_testing,
 } from './game-word-code-service';
 
 describe('game-word-code-service', () => {
@@ -30,16 +30,12 @@ describe('game-word-code-service', () => {
   });
 
   describe(`Word => ${GenerateGameWordCode.name} => ${TransformToGameWord.name} => Word`, () => {
-    it('All 6-letter words', () => {
-      sixLetterWords.forEach((originalWord) => {
-        const code = GenerateGameWordCode(originalWord);
-        const expectedWord = TransformToGameWord(code);
-        expect(originalWord).toBe(expectedWord);
-      });
-    });
-
-    it('All 7-letter words', () => {
-      sevenLetterWords.forEach((originalWord) => {
+    it.each`
+      wordLength | wordList
+      ${6}       | ${sixLetterWords}
+      ${7}       | ${sevenLetterWords}
+    `('All $wordLength-letter words', ({ wordList }) => {
+      wordList.forEach((originalWord: string) => {
         const code = GenerateGameWordCode(originalWord);
         const expectedWord = TransformToGameWord(code);
         expect(originalWord).toBe(expectedWord);
@@ -102,13 +98,13 @@ describe('game-word-code-service', () => {
     ${parseInt('89ab', 26)} | ${7}   | ${'IJKL'}
     ${parseInt('mnop', 26)} | ${7}   | ${'WXYZ'}
   `('GameWordCode to number Conversion', ({ number, length, code }) => {
-    it(`${_for_testing.convertNumberToCode.name} > WHEN number=${number} and length=${length}, THEN code=${code}`, () => {
-      const actualCode = _for_testing.convertNumberToCode(number, length);
+    it(`${FOR_TESTING.convertNumberToCode.name} > WHEN number=${number} and length=${length}, THEN code=${code}`, () => {
+      const actualCode = FOR_TESTING.convertNumberToCode(number, length);
       expect(actualCode).toBe(code);
     });
 
-    it(`${_for_testing.convertCodeToNumber.name} > WHEN code=${code} THEN number=${number}`, () => {
-      const actualCode = _for_testing.convertCodeToNumber(code);
+    it(`${FOR_TESTING.convertCodeToNumber.name} > WHEN code=${code} THEN number=${number}`, () => {
+      const actualCode = FOR_TESTING.convertCodeToNumber(code);
       expect(actualCode).toBe(number);
     });
   });

@@ -91,7 +91,7 @@ export const GetGameWordCodeValidationRule: GameWordCodeFormValidationRule = {
   pattern: '^[A-Z]{3,4}$',
 };
 
-export const _for_testing = {
+export const FOR_TESTING = {
   convertCodeToNumber,
   convertNumberToCode,
 };
