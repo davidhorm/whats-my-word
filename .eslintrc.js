@@ -59,6 +59,8 @@ module.exports = {
      */
     "plugin:react/jsx-runtime",
 
+    "plugin:storybook/recommended",
+
     /**
      * THESE PRETTIER RULES SHOULD ALWAYS BE LAST CONFIG IN EXTENDS ARRAY!
      * Turns off all ESLint rules that are unnecessary or might conflict with Prettier.
@@ -100,7 +102,6 @@ module.exports = {
 
     // Inspired by https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
     'import/prefer-default-export': 'off',
-    'import/no-default-export': 'error', // however will need default export if doing React.lazy
   },
   ignorePatterns: [
     'build/',
