@@ -2,13 +2,13 @@
  * DOMAIN/PUBLIC TYPES
  * ********************/
 
-/** Word is not valid length for a given length. */
-type InvalidWordLengthError = Error;
+// /** Word is not valid length for a given length. */
+// type InvalidWordLengthError = Error;
 
-/** Word is not defined */
-type InvalidWordError = Error;
+// /** Word is not defined */
+// type InvalidWordError = Error;
 
-type InvalidGuessWordError = InvalidWordLengthError | InvalidWordError;
+// type InvalidGuessWordError = InvalidWordLengthError | InvalidWordError;
 
 export type GuessWordScore = {
   matchingLetters: number;
