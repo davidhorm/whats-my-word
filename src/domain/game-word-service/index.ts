@@ -7,5 +7,10 @@ export type ValidGameWord = string;
 /** Code representing the Game Word to guess. The Code is the index of the word in a dictionary array. */
 export type GameWordCode = string;
 
-export { GenerateGameWordCode, GenerateRandomGameWordCode, GetGameWordCodeValidationRule, TransformToGameWord } from './game-word-code-service';
-export { GetGameWordValidationRule } from "./game-word-validation-service";
+export {
+  GenerateGameWordCode,
+  GenerateRandomGameWordCode,
+  GetGameWordCodeValidationRule,
+  TransformToGameWord,
+} from './game-word-code-service';
+export { GetGameWordValidationRule } from './game-word-validation-service';

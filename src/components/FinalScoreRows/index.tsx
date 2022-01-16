@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 
 const propTypes = {
   /** The score for each guess word. */
@@ -9,14 +8,14 @@ const propTypes = {
   actualWordLength: PropTypes.number.isRequired,
 };
 
-type props = PropTypes.InferProps<typeof propTypes>;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
 /**
  * <FinalScoreRows /> displays the bonus and final score rows.
  *
  * @returns {object} - a bunch of <span> tags
  */
-const FinalScoreRows: React.FC<props> = ({ scores, actualWordLength }) => {
+const FinalScoreRows = ({ scores, actualWordLength }: Props) => {
   const bonusScore = scores[scores.length - 1] === actualWordLength * 1000 ? 3000 : 0;
   const finalScore = scores.reduce((sum, currentValue) => sum + currentValue, 0);
 

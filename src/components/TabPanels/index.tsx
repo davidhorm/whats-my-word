@@ -13,7 +13,7 @@ const propTypes = {
   actualWordLength: PropTypes.number.isRequired,
 };
 
-type props = PropTypes.InferProps<typeof propTypes>;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
 const getTabId = (panel: string) => `tab-${panel}`;
 const getTabPanelId = (panel: string) => `tabpanel-${panel}`;
@@ -33,7 +33,7 @@ const tabPanelProps = (label: string) => ({
  *
  * @returns {object} - I don't know yet.
  */
-const TabPanels: React.FC<props> = ({ actualWordLength }) => {
+const TabPanels = ({ actualWordLength }: Props) => {
   const [tabValue, setTabValue] = React.useState(0);
   return (
     <>

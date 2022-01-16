@@ -7,8 +7,8 @@ import YouTubeIcon from '@material-ui/icons/YouTube';
 import React from 'react';
 import './index.css';
 
-type props = { setWordLength: Function };
-const NewGameMenu = ({ setWordLength }: props) => {
+type Props = { setWordLength: Function };
+const NewGameMenu = ({ setWordLength }: Props) => {
   const slider = React.useRef<HTMLElement>(null);
   return (
     <Paper className="container">

@@ -4,7 +4,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Fab from '@material-ui/core/Fab';
-import { createStyles, makeStyles, Theme, useTheme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, useTheme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Zoom from '@material-ui/core/Zoom';
 import AddIcon from '@material-ui/icons/Add';
@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useEvent } from './use-event.effect';
 
-const useStyles = makeStyles((theme: Theme) =>
+const useStyles = makeStyles((theme) =>
   createStyles({
     fab: {
       margin: theme.spacing(1),
@@ -42,7 +42,7 @@ const propTypes = {
   }).isRequired,
 };
 
-type props = PropTypes.InferProps<typeof propTypes>;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
 /**
  * <ActionButton /> draws the floating action button for the user to perform the main interaction.
@@ -50,7 +50,7 @@ type props = PropTypes.InferProps<typeof propTypes>;
  *
  * @returns {object} - A button that opens a Dialog.
  */
-const ActionButton: React.FC<props> = ({ action, dispatch, textFieldType }) => {
+const ActionButton = ({ action, dispatch, textFieldType }: Props) => {
   const [openDialog, setOpenDialog] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
 

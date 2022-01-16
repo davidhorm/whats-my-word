@@ -1,6 +1,12 @@
 import sixLetterWords from '../../wordList/6-letter-words.json';
 import sevenLetterWords from '../../wordList/7-letter-words.json';
-import { GenerateGameWordCode, GenerateRandomGameWordCode, GetGameWordCodeValidationRule, TransformToGameWord, _for_testing } from './game-word-code-service';
+import {
+  GenerateGameWordCode,
+  GenerateRandomGameWordCode,
+  GetGameWordCodeValidationRule,
+  TransformToGameWord,
+  _for_testing,
+} from './game-word-code-service';
 
 describe('game-word-code-service', () => {
   describe.each`
@@ -44,9 +50,9 @@ describe('game-word-code-service', () => {
   describe(GenerateGameWordCode.name, () => {
     it.each`
       gameWord
-      ${'tulip'    /** too short */}
-      ${'abcdef'   /** not a word */}
-      ${'abcdefg'  /** not a word */}
+      ${'tulip' /** too short */}
+      ${'abcdef' /** not a word */}
+      ${'abcdefg' /** not a word */}
       ${'fartings' /** too long */}
     `('WHEN invalid gameWord=$gameWord, THEN empty code', ({ gameWord }) => {
       const actualWordCode = GenerateGameWordCode(gameWord);
@@ -67,7 +73,7 @@ describe('game-word-code-service', () => {
 
   describe('GetGameWordCodeValidationRule', () => {
     it.each`
-    gameWordCode
+      gameWordCode
       ${'ABC'}
       ${'ABCD'}
     `('WHEN gameWord=$gameWordCode THEN valid', ({ gameWordCode }) => {

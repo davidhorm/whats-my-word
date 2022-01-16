@@ -33,9 +33,9 @@ export const initialState = {
 
 export const getStageIndex = (stage: string) => stages.indexOf(stage);
 
-type actions = { type: 'SET_WORD'; word: string } | { type: 'SET_SCORE'; score: number };
+type Actions = { type: 'SET_WORD'; word: string } | { type: 'SET_SCORE'; score: number };
 
-export const reducer = (state: typeof initialState, action: actions): typeof initialState => {
+export const reducer = (state: typeof initialState, action: Actions): typeof initialState => {
   const currentStageIndex = getStageIndex(state.currentStage);
   if (action.type === 'SET_WORD') {
     return {
