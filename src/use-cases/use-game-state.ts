@@ -38,22 +38,21 @@ const buildInitialGameState = (gameWord: ValidGameWord): GameState => ({
 type GameActions = { type: 'SET_GUESS_RESULTS'; guessWord: ValidGuessWord; guessResults: GuessWordScore };
 
 const reducer = (state: GameState, action: GameActions): GameState => {
-  switch (action.type) {
-    case 'SET_GUESS_RESULTS':
-      return {
-        ...state,
-        currentRound: (state.currentRound + 1) as GameRoundNumber,
-        isGameOver: state.currentRound === 10,
-        gameRounds: state.gameRounds.concat({
-          number: state.currentRound,
-          guessWord: action.guessWord,
-          score: action.guessResults,
-          bonusPoints: action.guessResults.matchingLetters === state.gameWord.length ? 3000 : 0,
-        }),
-      };
-    default:
-      return state;
-  }
+  const reducerMap: Record<typeof action.type, GameState> = {
+    SET_GUESS_RESULTS: {
+      ...state,
+      currentRound: (state.currentRound + 1) as GameRoundNumber,
+      isGameOver: state.currentRound === 10,
+      gameRounds: state.gameRounds.concat({
+        number: state.currentRound,
+        guessWord: action.guessWord,
+        score: action.guessResults,
+        bonusPoints: action.guessResults.matchingLetters === state.gameWord.length ? 3000 : 0,
+      }),
+    },
+  };
+
+  return reducerMap[action.type] || state;
 };
 
 const calculateBonusPoints = (state: GameState) =>

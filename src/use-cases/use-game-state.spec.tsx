@@ -9,13 +9,14 @@ describe(useGameState.name, () => {
     totalScore: 0,
   };
 
+  const queryId = 'clientGameState';
   const TestGameState = ({ code }: any) => {
     const {
       clientGameState: { rounds, bonusPoints, totalScore, submitGuessWord },
     } = useGameState({ code });
     return (
       <div>
-        <code id="clientGameState">{JSON.stringify({ rounds, bonusPoints, totalScore })}</code>;
+        <code id={queryId}>{JSON.stringify({ rounds, bonusPoints, totalScore })}</code>;
         <label htmlFor="guess-word">Guess Word:</label>
         <input id="guess-word" type="text" />
         <button
@@ -31,9 +32,9 @@ describe(useGameState.name, () => {
 
   it('should render the guesses for "nephew" with bonus points', () => {
     const { container } = render(<TestGameState code="HIR" />);
-    const jsonText = container.querySelector('#clientGameState')?.innerHTML || '{}';
-    const jsonObject = JSON.parse(jsonText);
-    expect(jsonObject).toEqual(defaultGameState);
+    const firstJsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
+    const firstJsonObject = JSON.parse(firstJsonText);
+    expect(firstJsonObject).toEqual(defaultGameState);
 
     const guessWords = ['so', 'den', 'ebb', 'inn', 'bid', 'turn', 'earl', 'newt', 'newel', 'endow', 'nephew'];
 
@@ -61,7 +62,7 @@ describe(useGameState.name, () => {
       const button = screen.getByText('Submit');
       userEvent.click(button);
 
-      const jsonText = container.querySelector('#clientGameState')?.innerHTML || '{}';
+      const jsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
       const jsonObject = JSON.parse(jsonText);
       expect(jsonObject).toEqual({
         rounds: finalGuessLetters.slice(0, index + 1),
@@ -73,9 +74,9 @@ describe(useGameState.name, () => {
 
   it('should render the guesses for "ballet" without bonus points', () => {
     const { container } = render(<TestGameState code="YND" />);
-    const jsonText = container.querySelector('#clientGameState')?.innerHTML || '{}';
-    const jsonObject = JSON.parse(jsonText);
-    expect(jsonObject).toEqual(defaultGameState);
+    const firstJsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
+    const firstJsonObject = JSON.parse(firstJsonText);
+    expect(firstJsonObject).toEqual(defaultGameState);
 
     const guessWords = ['an', 'car', 'act', 'toe', 'old', 'toot', 'dull', 'mail', 'falls', 'alter', 'wallet'];
 
@@ -103,7 +104,7 @@ describe(useGameState.name, () => {
       const button = screen.getByText('Submit');
       userEvent.click(button);
 
-      const jsonText = container.querySelector('#clientGameState')?.innerHTML || '{}';
+      const jsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
       const jsonObject = JSON.parse(jsonText);
       expect(jsonObject).toEqual({
         rounds: finalGuessLetters.slice(0, index + 1),
