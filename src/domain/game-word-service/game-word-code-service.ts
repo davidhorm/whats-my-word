@@ -58,7 +58,7 @@ export const TransformToGameWord = (code: GameWordCode): ValidGameWord => {
     4: {
       wordList: sevenLetterWords,
       denominator: MAX_SEVEN_LETTER_CODE_NUMBER,
-    }
+    },
   };
 
   const { wordList, denominator } = listMap[code.length as 3 | 4];
@@ -74,7 +74,6 @@ export const GenerateRandomGameWordCode = (length: GameWordLength, seed: number)
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Used as ALPHA-only game code.
   const codeLength = length === 6 ? 3 : 4;
 
-
   return Array.from({ length: codeLength }, () => chars.charAt(Math.random() * chars.length - 1)).join('');
 };
 
@@ -89,7 +88,7 @@ export const GetGameWordCodeValidationRule: GameWordCodeFormValidationRule = {
   required: true,
   minLength: 3,
   maxLength: 4,
-  pattern: '^[A-Z]{3,4}$'
+  pattern: '^[A-Z]{3,4}$',
 };
 
 export const _for_testing = {

@@ -26,12 +26,7 @@ module.exports = {
      */
     'airbnb-typescript',
     'airbnb/hooks',
-
-    /**
-     * Various awesome ESLint rules.
-     * https://github.com/sindresorhus/eslint-plugin-unicorn#rules
-     */
-    'plugin:unicorn/recommended',
+    'plugin:import/recommended', // TODO: cleanup lint rules
 
     /**
      * An ESLint plugin for linting ESLint plugins
@@ -72,7 +67,6 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier/@typescript-eslint',
     'prettier/react',
-    'prettier/unicorn',
   ],
   globals: {
     Atomics: 'readonly',
@@ -99,19 +93,6 @@ module.exports = {
   ],
   rules: {
     'spaced-comment': ['error', 'always', { 'markers': ['/'] }], // Allow triple slash comments used in *.d.ts files
-    'unicorn/filename-case': 0, // React has their own way of naming things
-    'unicorn/prevent-abbreviations': ['error',
-      {
-        'whitelist':
-        {
-          'env': true, // Allow react-app-env.d.ts file name
-
-          // Prop(s) used everywhere in React
-          'Prop': true,
-          'Props': true
-        }
-      }
-    ],
     'no-loops/no-loops': 2, // https://github.com/buildo/eslint-plugin-no-loops#why
     'eslint-comments/disable-enable-pair': ['error', { 'allowWholeFile': true }], // Allow disabling for the whole file
     'react/require-default-props': 0, // defaultProps will be deprecated. https://twitter.com/dan_abramov/status/1133878326358171650?s=20

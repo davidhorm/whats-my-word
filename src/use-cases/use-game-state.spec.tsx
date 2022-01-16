@@ -13,12 +13,20 @@ describe(useGameState.name, () => {
     const {
       clientGameState: { rounds, bonusPoints, totalScore, submitGuessWord },
     } = useGameState({ code });
-    return <div>
-      <code id="clientGameState">{JSON.stringify({ rounds, bonusPoints, totalScore })}</code>;
-      <label htmlFor="guess-word">Guess Word:</label>
-      <input id="guess-word" type="text" />
-      <button onClick={() => submitGuessWord && submitGuessWord((document.querySelector('#guess-word') as HTMLInputElement).value)}>Submit</button>
-    </div>
+    return (
+      <div>
+        <code id="clientGameState">{JSON.stringify({ rounds, bonusPoints, totalScore })}</code>;
+        <label htmlFor="guess-word">Guess Word:</label>
+        <input id="guess-word" type="text" />
+        <button
+          onClick={() =>
+            submitGuessWord && submitGuessWord((document.querySelector('#guess-word') as HTMLInputElement).value)
+          }
+        >
+          Submit
+        </button>
+      </div>
+    );
   };
 
   it('should render the guesses for "nephew" with bonus points', () => {
@@ -43,19 +51,7 @@ describe(useGameState.name, () => {
       ['n', 'e', 'p', 'h', 'e', 'w', 6000],
     ];
 
-    const totalScores = [
-      0,
-      1250,
-      2250,
-      2500,
-      2500,
-      2750,
-      3750,
-      6000,
-      8500,
-      10750,
-      16750 + 3000,
-    ];
+    const totalScores = [0, 1250, 2250, 2500, 2500, 2750, 3750, 6000, 8500, 10750, 16750 + 3000];
 
     guessWords.forEach((guessWord, index) => {
       const textbox = screen.getByLabelText('Guess Word:');
@@ -70,7 +66,7 @@ describe(useGameState.name, () => {
       expect(jsonObject).toEqual({
         rounds: finalGuessLetters.slice(0, index + 1),
         totalScore: totalScores[index],
-        bonusPoints: index === 10 ? 3000 : 0
+        bonusPoints: index === 10 ? 3000 : 0,
       });
     });
   });
@@ -81,7 +77,7 @@ describe(useGameState.name, () => {
     const jsonObject = JSON.parse(jsonText);
     expect(jsonObject).toEqual(defaultGameState);
 
-    const guessWords = ['an', 'car', 'act', 'toe', 'old', 'toot', 'dull', 'mail', 'falls', 'alter', 'wallet',];
+    const guessWords = ['an', 'car', 'act', 'toe', 'old', 'toot', 'dull', 'mail', 'falls', 'alter', 'wallet'];
 
     const finalGuessLetters = [
       ['a', 'n', '', '', '', '', 250],
@@ -97,19 +93,7 @@ describe(useGameState.name, () => {
       ['w', 'a', 'l', 'l', 'e', 't', 5000],
     ];
 
-    const totalScores = [
-      250,
-      1250,
-      2500,
-      3750,
-      4000,
-      5000,
-      6250,
-      8250,
-      11250,
-      14500,
-      19500,
-    ];
+    const totalScores = [250, 1250, 2500, 3750, 4000, 5000, 6250, 8250, 11250, 14500, 19500];
 
     guessWords.forEach((guessWord, index) => {
       const textbox = screen.getByLabelText('Guess Word:');
@@ -124,7 +108,7 @@ describe(useGameState.name, () => {
       expect(jsonObject).toEqual({
         rounds: finalGuessLetters.slice(0, index + 1),
         totalScore: totalScores[index],
-        bonusPoints: 0
+        bonusPoints: 0,
       });
     });
   });

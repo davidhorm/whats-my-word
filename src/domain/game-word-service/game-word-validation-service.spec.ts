@@ -1,4 +1,4 @@
-import { GetGameWordValidationRule } from "./game-word-validation-service";
+import { GetGameWordValidationRule } from './game-word-validation-service';
 
 describe('GetGameWordValidationRule', () => {
   it.each`

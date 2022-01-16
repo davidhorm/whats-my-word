@@ -1,6 +1,18 @@
 import { useReducer } from 'react';
-import { TransformToGameWord, type GameWordCode, type GameWordLength, type ValidGameWord } from '../domain/game-word-service';
-import { CalculateGuessResult, GetValidationRule, ParseGuessLetters, type GameRoundNumber, type GuessWordScore, type ValidGuessWord } from '../domain/guess-word-service';
+import {
+  TransformToGameWord,
+  type GameWordCode,
+  type GameWordLength,
+  type ValidGameWord,
+} from '../domain/game-word-service';
+import {
+  CalculateGuessResult,
+  GetValidationRule,
+  ParseGuessLetters,
+  type GameRoundNumber,
+  type GuessWordScore,
+  type ValidGuessWord,
+} from '../domain/guess-word-service';
 
 type GameRound = {
   number: GameRoundNumber;

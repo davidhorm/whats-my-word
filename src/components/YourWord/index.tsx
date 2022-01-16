@@ -18,19 +18,18 @@ const NUMBER_OF_GUESSES = new Array(11).fill(null);
  * @param {number[]} guessWordScores - List of scores for the guess word.
  * @returns {object} - <GuessWordRow />
  */
-const getGuessWordRow = (actualWordLength: number, guessWords: string[], guessWordScores: number[]) => (
-  _: any,
-  rowIndex: number
-) => (
-  <GuessWordRow
-    /* eslint-disable-next-line react/no-array-index-key*/
-    key={`word-${rowIndex}-${guessWords[rowIndex]}`}
-    rowIndex={rowIndex}
-    actualWordLength={actualWordLength}
-    guessWord={guessWords[rowIndex]}
-    guessWordScore={guessWordScores[rowIndex]}
-  />
-);
+const getGuessWordRow =
+  (actualWordLength: number, guessWords: string[], guessWordScores: number[]) => (_: any, rowIndex: number) =>
+    (
+      <GuessWordRow
+        /* eslint-disable-next-line react/no-array-index-key*/
+        key={`word-${rowIndex}-${guessWords[rowIndex]}`}
+        rowIndex={rowIndex}
+        actualWordLength={actualWordLength}
+        guessWord={guessWords[rowIndex]}
+        guessWordScore={guessWordScores[rowIndex]}
+      />
+    );
 
 /**
  * Get the `textFieldType` prop for <ActionButton />.
@@ -50,14 +49,14 @@ const propTypes = {
   actualWordLength: PropTypes.number.isRequired,
 };
 
-type props = PropTypes.InferProps<typeof propTypes>;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
 /**
  * <YourWord /> allows the user to view and manage their guesses of your actual word.
  *
  * @returns {object} - I don't know yet.
  */
-const YourWord: React.FC<props> = ({ actualWordLength }) => {
+const YourWord = ({ actualWordLength }: Props) => {
   const [state, dispatch] = React.useReducer(reducer, initialState);
 
   return (

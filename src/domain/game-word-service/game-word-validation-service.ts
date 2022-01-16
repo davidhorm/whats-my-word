@@ -9,5 +9,5 @@ export const GetGameWordValidationRule: GameWordFormValidationRule = {
   required: true,
   minLength: 6,
   maxLength: 7,
-  pattern: '^[A-Z]{6,7}$'
+  pattern: '^[A-Z]{6,7}$',
 };

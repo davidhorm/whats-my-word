@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import React from 'react';
 import '../../index.css';
 
 /**
@@ -43,14 +42,14 @@ const propTypes = {
   guessWordScore: PropTypes.number,
 };
 
-type props = PropTypes.InferProps<typeof propTypes>;
+type Props = PropTypes.InferProps<typeof propTypes>;
 
 /**
  * <GuessWordRow /> displays the letters of the guess word in individual <span> tags with grid-area styles.
  *
  * @returns {object} - a bunch of <span> tags
  */
-const GuessWordRow: React.FC<props> = ({ actualWordLength, rowIndex, guessWord, guessWordScore }) => {
+const GuessWordRow = ({ actualWordLength, rowIndex, guessWord, guessWordScore }: Props) => {
   const [before, after] = getNumberOfEmptyCells(rowIndex);
   const letters = getEmptyCells(before)
     .concat(guessWord?.split('') || getEmptyCells(actualWordLength - after))

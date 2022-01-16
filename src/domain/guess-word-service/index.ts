@@ -25,6 +25,5 @@ export type ValidGuessWord = string;
 
 // type ValidateGuessWord = (word: string, state: GameState) => InvalidGuessWordError | ValidGuessWord;
 
-
 export { CalculateGuessResult } from './guess-result-service';
 export { GetValidationRule, ParseGuessLetters } from './guess-word-service';
