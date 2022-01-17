@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { useGameState } from './use-game-state';
+import { useGameState, type ClientGameState } from './use-game-state';
 
 describe(useGameState.name, () => {
   const defaultGameState = {
+    gameWordLength: 6,
+    gameWordRevealed: '',
     bonusPoints: 0,
     rounds: [],
     totalScore: 0,
@@ -12,11 +14,13 @@ describe(useGameState.name, () => {
   const queryId = 'clientGameState';
   const TestGameState = ({ code }: any) => {
     const {
-      clientGameState: { rounds, bonusPoints, totalScore, submitGuessWord },
+      clientGameState: { rounds, bonusPoints, totalScore, submitGuessWord, gameWordLength, gameWordRevealed },
     } = useGameState({ code });
     return (
       <div>
-        <code id={queryId}>{JSON.stringify({ rounds, bonusPoints, totalScore })}</code>;
+        <code id={queryId}>
+          {JSON.stringify({ rounds, bonusPoints, totalScore, gameWordLength, gameWordRevealed })}
+        </code>
         <label htmlFor="guess-word">Guess Word:</label>
         <input id="guess-word" type="text" />
         <button
@@ -79,8 +83,10 @@ describe(useGameState.name, () => {
       userEvent.click(button);
 
       const jsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
-      const jsonObject = JSON.parse(jsonText);
+      const jsonObject = JSON.parse(jsonText) as ClientGameState;
       expect(jsonObject).toEqual({
+        gameWordLength: 6,
+        gameWordRevealed: index === 10 ? 'nephew' : '',
         rounds: finalGuesses.slice(0, index + 1),
         totalScore: totalScores[index],
         bonusPoints: index === 10 ? 3000 : 0,
@@ -137,8 +143,10 @@ describe(useGameState.name, () => {
       userEvent.click(button);
 
       const jsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
-      const jsonObject = JSON.parse(jsonText);
+      const jsonObject = JSON.parse(jsonText) as ClientGameState;
       expect(jsonObject).toEqual({
+        gameWordLength: 6,
+        gameWordRevealed: index === 10 ? 'ballet' : '',
         rounds: finalGuesses.slice(0, index + 1),
         totalScore: totalScores[index],
         bonusPoints: 0,

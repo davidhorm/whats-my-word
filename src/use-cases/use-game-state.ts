@@ -3,7 +3,7 @@ import {
   TransformToGameWord,
   type GameWordCode,
   type GameWordLength,
-  type ValidGameWord,
+  type ValidGameWord
 } from '../domain/game-word-service';
 import {
   CalculateGuessResult,
@@ -11,7 +11,7 @@ import {
   ParseGuessLetters,
   type GameRoundNumber,
   type GuessWordScore,
-  type ValidGuessWord,
+  type ValidGuessWord
 } from '../domain/guess-word-service';
 
 type GameRound = {
@@ -58,6 +58,21 @@ const reducer = (state: GameState, action: GameActions): GameState => {
 const calculateBonusPoints = (state: GameState) =>
   state.isGameOver && state.gameRounds[10].score.matchingLetters === state.gameWord.length ? 3000 : 0;
 
+export type ClientGameRound = {
+  letters: string[];
+  score: GuessWordScore;
+};
+
+export type ClientGameState = {
+  gameWordLength: number;
+  gameWordRevealed: string;
+  rounds: ClientGameRound[];
+  bonusPoints: number;
+  totalScore: number;
+  validationRule?: ReturnType<typeof GetValidationRule>;
+  submitGuessWord?: (guessWord: ValidGuessWord) => void;
+};
+
 type UseGameStateProps = { code: GameWordCode };
 export const useGameState = ({ code }: UseGameStateProps) => {
   const gameWord = TransformToGameWord(code);
@@ -69,7 +84,9 @@ export const useGameState = ({ code }: UseGameStateProps) => {
   };
 
   /** Get the Game State meant to display on the client. */
-  const clientGameState = {
+  const clientGameState: ClientGameState = {
+    gameWordLength: state.gameWord.length,
+    gameWordRevealed: state.isGameOver ? state.gameWord : '',
     rounds: state.gameRounds.map((gameRound) => ({
       letters: ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number),
       score: gameRound.score,
@@ -79,8 +96,10 @@ export const useGameState = ({ code }: UseGameStateProps) => {
       (previousValue, currentValue) => previousValue + currentValue.score.score,
       calculateBonusPoints(state)
     ),
-    validationRule: !state.isGameOver && GetValidationRule(state.gameWord.length as GameWordLength, state.currentRound),
-    submitGuessWord: !state.isGameOver && submitGuessWord,
+    validationRule: !state.isGameOver
+      ? GetValidationRule(state.gameWord.length as GameWordLength, state.currentRound)
+      : undefined,
+    submitGuessWord: !state.isGameOver ? submitGuessWord : undefined,
   };
 
   return { clientGameState };
