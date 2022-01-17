@@ -16,7 +16,7 @@ export const GenerateCode = () => {
   };
 
   return (
-    <Paper>
+    <Paper elevation={4}>
       <Typography>Generate a code for your friend.</Typography>
       <TextField
         label="6 or 7 letter word"
