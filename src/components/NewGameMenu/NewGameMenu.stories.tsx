@@ -5,4 +5,5 @@ export default {
   component: NewGameMenu,
 };
 
-export const Default = () => <NewGameMenu setWordLength={() => {}} />;
+/* eslint-disable-next-line prettier/prettier */
+export const Default = () => <NewGameMenu setGameCode={() => { }} />;
