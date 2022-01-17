@@ -70,7 +70,7 @@ export const TransformToGameWord = (code: GameWordCode): ValidGameWord => {
 };
 
 /** AI selects a game word for any player to guess. The code provided is used to start the game. */
-export const GenerateRandomGameWordCode = (length: GameWordLength, seed: number): GameWordCode => {
+export const GenerateRandomGameWordCode = (length: GameWordLength): GameWordCode => {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'; // Used as ALPHA-only game code.
   const codeLength = length === 6 ? 3 : 4;
 
