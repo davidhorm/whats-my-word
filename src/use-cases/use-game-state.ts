@@ -70,11 +70,10 @@ export const useGameState = ({ code }: UseGameStateProps) => {
 
   /** Get the Game State meant to display on the client. */
   const clientGameState = {
-    rounds: state.gameRounds.map((gameRound) =>
-      ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number).concat(
-        gameRound.score.score
-      )
-    ),
+    rounds: state.gameRounds.map((gameRound) => ({
+      letters: ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number),
+      score: gameRound.score,
+    })),
     bonusPoints: calculateBonusPoints(state),
     totalScore: state.gameRounds.reduce(
       (previousValue, currentValue) => previousValue + currentValue.score.score,

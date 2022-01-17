@@ -9,7 +9,7 @@ export const ParseGuessLetters = (
   gameWordLength: GameWordLength,
   guessWord: ValidGuessWord,
   roundNumber: GameRoundNumber
-) => {
+): string[] => {
   const guessWordStartIndex = [0, 0, 1, 2, 3, 2, 1, 0, 0, 1, 0];
   const leftPadCount = guessWordStartIndex[roundNumber];
   const rightPadCount = gameWordLength - guessWord.length - leftPadCount;

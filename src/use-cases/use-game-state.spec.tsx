@@ -39,18 +39,34 @@ describe(useGameState.name, () => {
     const guessWords = ['so', 'den', 'ebb', 'inn', 'bid', 'turn', 'earl', 'newt', 'newel', 'endow', 'nephew'];
 
     const finalGuessLetters = [
-      ['s', 'o', '', '', '', '', 0],
-      ['d', 'e', 'n', '', '', '', 1250],
-      ['', 'e', 'b', 'b', '', '', 1000],
-      ['', '', 'i', 'n', 'n', '', 250],
-      ['', '', '', 'b', 'i', 'd', 0],
-      ['', '', 't', 'u', 'r', 'n', 250],
-      ['', 'e', 'a', 'r', 'l', '', 1000],
-      ['n', 'e', 'w', 't', '', '', 2250],
-      ['n', 'e', 'w', 'e', 'l', '', 2500],
-      ['', 'e', 'n', 'd', 'o', 'w', 2250],
-      ['n', 'e', 'p', 'h', 'e', 'w', 6000],
+      ['s', 'o', '', '', '', ''],
+      ['d', 'e', 'n', '', '', ''],
+      ['', 'e', 'b', 'b', '', ''],
+      ['', '', 'i', 'n', 'n', ''],
+      ['', '', '', 'b', 'i', 'd'],
+      ['', '', 't', 'u', 'r', 'n'],
+      ['', 'e', 'a', 'r', 'l', ''],
+      ['n', 'e', 'w', 't', '', ''],
+      ['n', 'e', 'w', 'e', 'l', ''],
+      ['', 'e', 'n', 'd', 'o', 'w'],
+      ['n', 'e', 'p', 'h', 'e', 'w'],
     ];
+
+    const finalGuessScores = [
+      { score: 0, matchingLetters: 0, nonMatchingLetters: 0 },
+      { score: 1250, matchingLetters: 1, nonMatchingLetters: 1 },
+      { score: 1000, matchingLetters: 1, nonMatchingLetters: 0 },
+      { score: 250, matchingLetters: 0, nonMatchingLetters: 1 },
+      { score: 0, matchingLetters: 0, nonMatchingLetters: 0 },
+      { score: 250, matchingLetters: 0, nonMatchingLetters: 1 },
+      { score: 1000, matchingLetters: 1, nonMatchingLetters: 0 },
+      { score: 2250, matchingLetters: 2, nonMatchingLetters: 1 },
+      { score: 2500, matchingLetters: 2, nonMatchingLetters: 2 },
+      { score: 2250, matchingLetters: 2, nonMatchingLetters: 1 },
+      { score: 6000, matchingLetters: 6, nonMatchingLetters: 0 },
+    ];
+
+    const finalGuesses = finalGuessLetters.map((letters, index) => ({ letters, score: finalGuessScores[index] }));
 
     const totalScores = [0, 1250, 2250, 2500, 2500, 2750, 3750, 6000, 8500, 10750, 16750 + 3000];
 
@@ -65,7 +81,7 @@ describe(useGameState.name, () => {
       const jsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
       const jsonObject = JSON.parse(jsonText);
       expect(jsonObject).toEqual({
-        rounds: finalGuessLetters.slice(0, index + 1),
+        rounds: finalGuesses.slice(0, index + 1),
         totalScore: totalScores[index],
         bonusPoints: index === 10 ? 3000 : 0,
       });
@@ -81,18 +97,34 @@ describe(useGameState.name, () => {
     const guessWords = ['an', 'car', 'act', 'toe', 'old', 'toot', 'dull', 'mail', 'falls', 'alter', 'wallet'];
 
     const finalGuessLetters = [
-      ['a', 'n', '', '', '', '', 250],
-      ['c', 'a', 'r', '', '', '', 1000],
-      ['', 'a', 'c', 't', '', '', 1250],
-      ['', '', 't', 'o', 'e', '', 1250],
-      ['', '', '', 'o', 'l', 'd', 250],
-      ['', '', 't', 'o', 'o', 't', 1000],
-      ['', 'd', 'u', 'l', 'l', '', 1250],
-      ['m', 'a', 'i', 'l', '', '', 2000],
-      ['f', 'a', 'l', 'l', 's', '', 3000],
-      ['', 'a', 'l', 't', 'e', 'r', 3250],
-      ['w', 'a', 'l', 'l', 'e', 't', 5000],
+      ['a', 'n', '', '', '', ''],
+      ['c', 'a', 'r', '', '', ''],
+      ['', 'a', 'c', 't', '', ''],
+      ['', '', 't', 'o', 'e', ''],
+      ['', '', '', 'o', 'l', 'd'],
+      ['', '', 't', 'o', 'o', 't'],
+      ['', 'd', 'u', 'l', 'l', ''],
+      ['m', 'a', 'i', 'l', '', ''],
+      ['f', 'a', 'l', 'l', 's', ''],
+      ['', 'a', 'l', 't', 'e', 'r'],
+      ['w', 'a', 'l', 'l', 'e', 't'],
     ];
+
+    const finalGuessScores = [
+      { score: 250, matchingLetters: 0, nonMatchingLetters: 1 },
+      { score: 1000, matchingLetters: 1, nonMatchingLetters: 0 },
+      { score: 1250, matchingLetters: 1, nonMatchingLetters: 1 },
+      { score: 1250, matchingLetters: 1, nonMatchingLetters: 1 },
+      { score: 250, matchingLetters: 0, nonMatchingLetters: 1 },
+      { score: 1000, matchingLetters: 1, nonMatchingLetters: 0 },
+      { score: 1250, matchingLetters: 1, nonMatchingLetters: 1 },
+      { score: 2000, matchingLetters: 2, nonMatchingLetters: 0 },
+      { score: 3000, matchingLetters: 3, nonMatchingLetters: 0 },
+      { score: 3250, matchingLetters: 3, nonMatchingLetters: 1 },
+      { score: 5000, matchingLetters: 5, nonMatchingLetters: 0 },
+    ];
+
+    const finalGuesses = finalGuessLetters.map((letters, index) => ({ letters, score: finalGuessScores[index] }));
 
     const totalScores = [250, 1250, 2500, 3750, 4000, 5000, 6250, 8250, 11250, 14500, 19500];
 
@@ -107,7 +139,7 @@ describe(useGameState.name, () => {
       const jsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
       const jsonObject = JSON.parse(jsonText);
       expect(jsonObject).toEqual({
-        rounds: finalGuessLetters.slice(0, index + 1),
+        rounds: finalGuesses.slice(0, index + 1),
         totalScore: totalScores[index],
         bonusPoints: 0,
       });
