@@ -5,7 +5,7 @@ import { GUESS_WORD_LENGTHS } from '../../services/grid-template.service';
 import { ActionButton } from '../ActionButton';
 import { FinalScoreRows } from '../FinalScoreRows';
 import { GameWord } from '../GameWord';
-import { GuessWordRow } from '../GuessWordRow';
+import { GuessWordRowOld } from '../GuessWordRow_old';
 import { getStageIndex, initialState, reducer } from './reducer';
 
 const NUMBER_OF_GUESSES = new Array(11).fill(null);
@@ -21,7 +21,7 @@ const NUMBER_OF_GUESSES = new Array(11).fill(null);
 const getGuessWordRow =
   (actualWordLength: number, guessWords: string[], guessWordScores: number[]) => (_: any, rowIndex: number) =>
     (
-      <GuessWordRow
+      <GuessWordRowOld
         /* eslint-disable-next-line react/no-array-index-key*/
         key={`word-${rowIndex}-${guessWords[rowIndex]}`}
         rowIndex={rowIndex}

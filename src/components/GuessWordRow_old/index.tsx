@@ -49,7 +49,7 @@ type Props = PropTypes.InferProps<typeof propTypes>;
  *
  * @returns {object} - a bunch of <span> tags
  */
-const GuessWordRow = ({ actualWordLength, rowIndex, guessWord, guessWordScore }: Props) => {
+const GuessWordRowOld = ({ actualWordLength, rowIndex, guessWord, guessWordScore }: Props) => {
   const [before, after] = getNumberOfEmptyCells(rowIndex);
   const letters = getEmptyCells(before)
     .concat(guessWord?.split('') || getEmptyCells(actualWordLength - after))
@@ -72,6 +72,6 @@ const GuessWordRow = ({ actualWordLength, rowIndex, guessWord, guessWordScore }:
   );
 };
 
-GuessWordRow.propTypes = propTypes;
+GuessWordRowOld.propTypes = propTypes;
 
-export { GuessWordRow };
+export { GuessWordRowOld };
