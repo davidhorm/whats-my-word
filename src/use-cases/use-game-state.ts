@@ -3,7 +3,7 @@ import {
   TransformToGameWord,
   type GameWordCode,
   type GameWordLength,
-  type ValidGameWord
+  type ValidGameWord,
 } from '../domain/game-word-service';
 import {
   CalculateGuessResult,
@@ -11,7 +11,7 @@ import {
   ParseGuessLetters,
   type GameRoundNumber,
   type GuessWordScore,
-  type ValidGuessWord
+  type ValidGuessWord,
 } from '../domain/guess-word-service';
 
 type GameRound = {
