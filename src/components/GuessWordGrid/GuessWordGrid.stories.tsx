@@ -45,5 +45,6 @@ const nephewGuesses = guessesForNephew.map((letters, index) => ({ letters, score
 export const NephewGuesses = Template.bind({});
 NephewGuesses.args = {
   gameWordLength: 6,
+  gameWordRevealed: 'nephew',
   rounds: nephewGuesses,
 };
