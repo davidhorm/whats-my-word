@@ -47,4 +47,7 @@ NephewGuesses.args = {
   gameWordLength: 6,
   gameWordRevealed: 'nephew',
   rounds: nephewGuesses,
+  bonusPoints: 3000,
+  totalScore: 19750,
+  variant: 'SCORE',
 };
