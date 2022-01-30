@@ -97,6 +97,7 @@ module.exports = {
     'spaced-comment': ['error', 'always', { 'markers': ['/'] }], // Allow triple slash comments used in *.d.ts files
     'no-loops/no-loops': 2, // https://github.com/buildo/eslint-plugin-no-loops#why
     'eslint-comments/disable-enable-pair': ['error', { 'allowWholeFile': true }], // Allow disabling for the whole file
+    'eslint-comments/no-unlimited-disable': 'warn', // sometimes I want to build something w/o fixing all the linting
     'react/require-default-props': 0, // defaultProps will be deprecated. https://twitter.com/dan_abramov/status/1133878326358171650?s=20
     '@typescript-eslint/no-unused-expressions': 0, // disabling because can't do `this && that()`
 
