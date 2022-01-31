@@ -10,12 +10,14 @@ type LetterCellsProps = {
   gameWordLength: number;
   guessWordLetters?: string[];
   rowIndex: number;
+  disabled: boolean;
 };
 
-export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex }: LetterCellsProps) => {
+export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex, disabled }: LetterCellsProps) => {
   const guessWord = guessWordLetters?.join('');
   const guessWordLength = gameWordLength + GUESS_WORD_LENGTHS[rowIndex];
   const inputProps = Array.from({ length: guessWordLength }).map((_, colIndex) => ({
+    disabled,
     className: 'guess-word-cell',
     style: { gridArea: `round-${rowIndex}-letter-${colIndex}` },
   }));

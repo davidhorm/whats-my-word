@@ -22,7 +22,12 @@ export const GuessWordGrid = ({
 
     {Array.from({ length: 11 }).map((_, rowIndex) => (
       <>
-        <LetterCells rowIndex={rowIndex} gameWordLength={gameWordLength} guessWordLetters={rounds[rowIndex]?.letters} />
+        <LetterCells
+          rowIndex={rowIndex}
+          disabled={rowIndex !== rounds.length}
+          gameWordLength={gameWordLength}
+          guessWordLetters={rounds[rowIndex]?.letters}
+        />
         <ScoreCells rowIndex={rowIndex} variant={variant} score={rounds[rowIndex]?.score} />
       </>
     ))}
