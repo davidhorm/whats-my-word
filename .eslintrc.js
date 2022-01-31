@@ -103,6 +103,13 @@ module.exports = {
 
     // Inspired by https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
     'import/prefer-default-export': 'off',
+
+    // Importing dev specific items in stories and tests.
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-extraneous-dependencies.md
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.stories.tsx", "**/*.spec.tsx"] }
+    ],
   },
   ignorePatterns: [
     'build/',
