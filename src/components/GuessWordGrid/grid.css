@@ -1,4 +1,6 @@
 .guess-word-grid {
+  --min-cell-size: 7.5vw;
+
   display: grid;
   grid-template-areas:
     "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5 game-word-letter-6 .                 .                        ."
@@ -18,14 +20,13 @@
 }
 
 .guess-word-cell {
-  outline: 1px solid hsl(0, 0%, 38%);
-  min-width: 2rem;
-  min-height: 2rem;
+  width: var(--min-cell-size);
+  height: var(--min-cell-size);
 }
 
-.--letter-cell {
+/* .--letter-cell {
   background-color: hsl(210, 40%, 96.1%);
-}
+} */
 
 .--score-cell {
   background-color: hsl(204, 93.8%, 93.7%);

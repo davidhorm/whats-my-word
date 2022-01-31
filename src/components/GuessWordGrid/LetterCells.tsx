@@ -1,3 +1,5 @@
+import { IndividualCharacterInputs } from './IndividualCharacterInputs';
+
 /**
  * The guess word lengths. Add with the actual word length to get the value.
  * The position in the array represents the row index.
@@ -11,19 +13,12 @@ type LetterCellsProps = {
 };
 
 export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex }: LetterCellsProps) => {
-  const guessLetters = guessWordLetters?.join('').toUpperCase().split('') || [];
+  const guessWord = guessWordLetters?.join('');
+  const guessWordLength = gameWordLength + GUESS_WORD_LENGTHS[rowIndex];
+  const inputProps = Array.from({ length: guessWordLength }).map((_, colIndex) => ({
+    className: 'guess-word-cell',
+    style: { gridArea: `round-${rowIndex}-letter-${colIndex}` },
+  }));
 
-  return (
-    <>
-      {Array.from({ length: gameWordLength + GUESS_WORD_LENGTHS[rowIndex] }).map((_, colIndex) => (
-        <span
-          key={`${rowIndex}_${colIndex}`}
-          className="guess-word-cell --letter-cell"
-          style={{ gridArea: `round-${rowIndex}-letter-${colIndex}` }}
-        >
-          {guessLetters[colIndex] || <>&nbsp;</>}
-        </span>
-      ))}
-    </>
-  );
+  return <IndividualCharacterInputs amount={guessWordLength} inputProps={inputProps} value={guessWord} />;
 };
