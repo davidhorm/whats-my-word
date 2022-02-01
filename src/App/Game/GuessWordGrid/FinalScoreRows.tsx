@@ -1,4 +1,4 @@
-import type { ClientGameState } from '../../use-cases/use-game-state';
+import type { ClientGameState } from '../../../use-cases/use-game-state';
 
 type FinalScoreRowsProps = Pick<ClientGameState, 'bonusPoints' | 'totalScore'>;
 

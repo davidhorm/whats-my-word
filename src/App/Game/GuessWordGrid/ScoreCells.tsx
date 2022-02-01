@@ -1,4 +1,4 @@
-import type { GuessWordScore } from '../../domain/guess-word-service';
+import type { GuessWordScore } from '../../../domain/guess-word-service';
 
 type ScoreCellsProps = {
   rowIndex: number;
