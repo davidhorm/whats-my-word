@@ -1,4 +1,4 @@
-import { ComponentProps, FormEvent, useState } from 'react';
+import { ComponentProps, FormEvent, Fragment, useState } from 'react';
 import type { ClientGameState } from '../../../use-cases/use-game-state';
 import { FinalScoreRows } from './FinalScoreRows';
 import { GameWordCells } from './GameWordCells';
@@ -29,7 +29,7 @@ export const GuessWordGrid = ({
       <GameWordCells gameWordLength={gameWordLength} gameWordRevealed={gameWordRevealed} />
 
       {Array.from({ length: 11 }).map((_, rowIndex) => (
-        <>
+        <Fragment key={rowIndex}>
           <LetterCells
             rowIndex={rowIndex}
             disabled={rowIndex !== rounds.length}
@@ -50,7 +50,7 @@ export const GuessWordGrid = ({
               style={{ gridArea: `round-${rowIndex}-score` }}
             />
           )}
-        </>
+        </Fragment>
       ))}
 
       {variant === 'SCORE' && <FinalScoreRows bonusPoints={bonusPoints} totalScore={totalScore} />}
