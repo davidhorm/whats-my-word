@@ -1,14 +1,12 @@
 import { useState } from 'react';
-import { Game } from './App/Game';
-import { NewGameMenu } from './components/NewGameMenu';
+import { Game } from './Game';
+import { NewGameMenu } from './NewGameMenu';
 
 /**
  * App component.
  */
-function App() {
+export const App = () => {
   const [gameCode, setGameCode] = useState('');
 
   return <main>{!gameCode ? <NewGameMenu setGameCode={setGameCode} /> : <Game code={gameCode} />}</main>;
-}
-
-export { App };
+};
