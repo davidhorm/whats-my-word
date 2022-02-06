@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Game } from './Game';
+import './index.css';
 import { NewGameMenu } from './NewGameMenu';
 
 /**
@@ -8,5 +9,7 @@ import { NewGameMenu } from './NewGameMenu';
 export const App = () => {
   const [gameCode, setGameCode] = useState('');
 
-  return <main>{!gameCode ? <NewGameMenu setGameCode={setGameCode} /> : <Game code={gameCode} />}</main>;
+  return (
+    <main className="main">{!gameCode ? <NewGameMenu setGameCode={setGameCode} /> : <Game code={gameCode} />}</main>
+  );
 };

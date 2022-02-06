@@ -1,3 +1,4 @@
+import '../src/App/index.css';
 import '../src/index.css';
 
 export const parameters = {
@@ -12,3 +13,11 @@ export const parameters = {
     defaultViewport: 'mobile1',
   }
 }
+
+export const decorators = [
+  (Story) => (
+    <main className="main">
+      <Story />
+    </main>
+  ),
+];
