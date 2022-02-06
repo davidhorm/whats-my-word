@@ -6,17 +6,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-.gameTab {
-  max-width: 425px;
-  padding: 16px;
-}
-
-.gameTable {
-  font-family: 'Roboto Mono', monospace;
-  width: 100%;
-}
-
-.guessLetter {
-  background-color: #FFE082;
-}
