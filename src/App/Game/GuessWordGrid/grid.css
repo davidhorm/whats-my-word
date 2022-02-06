@@ -1,5 +1,5 @@
 .guess-word-grid {
-  --min-cell-size: 7.5vw;
+  --cell-size: clamp(1.5rem, 7.5vw, 2rem);
 
   display: grid;
   grid-template-areas:
@@ -20,13 +20,9 @@
 }
 
 .guess-word-cell {
-  width: var(--min-cell-size);
-  height: var(--min-cell-size);
+  width: var(--cell-size);
+  height: var(--cell-size);
 }
-
-/* .--letter-cell {
-  background-color: hsl(210, 40%, 96.1%);
-} */
 
 .--score-cell {
   background-color: hsl(204, 93.8%, 93.7%);
