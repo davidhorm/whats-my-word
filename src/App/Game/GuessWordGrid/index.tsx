@@ -25,7 +25,7 @@ export const GuessWordGrid = ({
   };
 
   return (
-    <form className="guess-word-grid" onSubmit={handleSubmit}>
+    <form className={`guess-word-grid ${gameWordLength === 7 && '--7-columns'}`} onSubmit={handleSubmit}>
       <GameWordCells gameWordLength={gameWordLength} gameWordRevealed={gameWordRevealed} />
 
       {Array.from({ length: 11 }).map((_, rowIndex) => (
