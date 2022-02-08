@@ -5,7 +5,7 @@ type GameWordCellsProps = Pick<ClientGameState, 'gameWordRevealed' | 'gameWordLe
 
 export const GameWordCells = ({ gameWordLength, gameWordRevealed = '' }: GameWordCellsProps) => {
   const inputProps = Array.from({ length: gameWordLength }).map((_, index) => ({
-    className: 'guess-word-cell',
+    className: 'guess-word-cell --letter-cell',
     style: { gridArea: `game-word-letter-${index}` },
   }));
 
