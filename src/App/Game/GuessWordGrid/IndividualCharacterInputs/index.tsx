@@ -1,4 +1,4 @@
-import { ChangeEventHandler, InputHTMLAttributes, KeyboardEventHandler, useState } from 'react';
+import { ChangeEventHandler, InputHTMLAttributes, KeyboardEventHandler, useEffect, useState } from 'react';
 
 // 9-boxes
 const size = '7.5vw';
@@ -19,9 +19,13 @@ export const IndividualCharacterInputs = ({
   onChange = () => {},
   value,
 }: Props) => {
-  const initialCharacterArray =
-    typeof value === 'string' && !!value ? value.toUpperCase().split('') : Array.from({ length: amount }, () => '');
-  const [characterArray, setCharacterArray] = useState(initialCharacterArray);
+  const [characterArray, setCharacterArray] = useState(Array.from({ length: amount }, () => ''));
+
+  useEffect(() => {
+    if (value && typeof value === 'string') {
+      setCharacterArray(value.toUpperCase().split(''));
+    }
+  }, [value]);
 
   const changeFocus = (direction: 'next' | 'previous', target: HTMLInputElement) => {
     const sibling = target?.[`${direction}ElementSibling`] as HTMLInputElement;
