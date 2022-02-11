@@ -1,4 +1,4 @@
-import type { GuessWordScore } from '../../../domain/guess-word-service';
+import type { GuessWordScore } from '../../../../domain/guess-word-service';
 
 export type ScoreCellsVariant = 'SCORE' | 'CORRECTNESS';
 
@@ -11,7 +11,10 @@ type ScoreCellsProps = {
 export const ScoreCells = ({ rowIndex, variant = 'SCORE', score }: ScoreCellsProps) => (
   <>
     {variant === 'SCORE' && (
-      <span className="guess-word-cell --align-right --score-cell" style={{ gridArea: `round-${rowIndex}-score` }}>
+      <span
+        className="guess-word-cell --align-right --score-cell --mono-font"
+        style={{ gridArea: `round-${rowIndex}-score` }}
+      >
         {score?.score ?? <>&nbsp;</>}
       </span>
     )}
@@ -19,13 +22,13 @@ export const ScoreCells = ({ rowIndex, variant = 'SCORE', score }: ScoreCellsPro
     {variant === 'CORRECTNESS' && (
       <>
         <span
-          className="guess-word-cell --align-right --matching-cell"
+          className="guess-word-cell --matching-cell --mono-font --align-center"
           style={{ gridArea: `round-${rowIndex}-matching-letter` }}
         >
           {score?.matchingLetters ?? <>&nbsp;</>}
         </span>
         <span
-          className="guess-word-cell --align-right --non-matching-cell"
+          className="guess-word-cell --non-matching-cell --mono-font --align-center"
           style={{ gridArea: `round-${rowIndex}-non-matching-letter` }}
         >
           {score?.nonMatchingLetters ?? <>&nbsp;</>}

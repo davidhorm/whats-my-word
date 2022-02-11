@@ -58,7 +58,7 @@ export const GuessWordGrid = ({
         </Fragment>
       ))}
 
-      <FinalScoreRows bonusPoints={bonusPoints} totalScore={totalScore} />
+      <FinalScoreRows gameWordRevealed={gameWordRevealed} bonusPoints={bonusPoints} totalScore={totalScore} />
     </form>
   );
 };
