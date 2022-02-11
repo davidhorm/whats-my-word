@@ -1,4 +1,5 @@
 import { ComponentProps, FormEvent, Fragment, useState } from 'react';
+import type { GameRoundNumber } from '../../../domain/guess-word-service';
 import type { ClientGameState } from '../../../use-cases/use-game-state';
 import { FinalScoreRows } from './FinalScoreRows';
 import { GameWordCells } from './GameWordCells';
@@ -6,6 +7,7 @@ import { getGridTemplateAreas } from './grid-template-service';
 import './grid.css';
 import { LetterCells } from './LetterCells';
 import { ScoreCells } from './ScoreCells';
+import { SubmitButton } from './SubmitButton';
 
 type GuessWordGridProp = Omit<ClientGameState, 'validationRule'> & Pick<ComponentProps<typeof ScoreCells>, 'variant'>;
 
@@ -30,7 +32,7 @@ export const GuessWordGrid = ({
       className="guess-word-grid"
       style={{
         gridTemplateAreas: getGridTemplateAreas(gameWordLength, variant),
-        gridTemplateColumns: `repeat(${gameWordLength}, var(--cell-size))`,
+        gridTemplateColumns: `repeat(${gameWordLength + 2}, var(--cell-size))`,
       }}
       onSubmit={handleSubmit}
     >
@@ -51,17 +53,12 @@ export const GuessWordGrid = ({
           )}
 
           {rowIndex === rounds.length && (
-            <input
-              type="submit"
-              value="SUBMIT"
-              className="guess-word-cell --score-cell"
-              style={{ gridArea: `round-${rowIndex}-score` }}
-            />
+            <SubmitButton rowIndex={rowIndex as GameRoundNumber} scoreCellsVariant={variant} />
           )}
         </Fragment>
       ))}
 
-      {variant === 'SCORE' && <FinalScoreRows bonusPoints={bonusPoints} totalScore={totalScore} />}
+      <FinalScoreRows bonusPoints={bonusPoints} totalScore={totalScore} />
     </form>
   );
 };
