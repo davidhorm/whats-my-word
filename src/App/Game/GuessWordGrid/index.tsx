@@ -2,6 +2,7 @@ import { ComponentProps, FormEvent, Fragment, useState } from 'react';
 import type { ClientGameState } from '../../../use-cases/use-game-state';
 import { FinalScoreRows } from './FinalScoreRows';
 import { GameWordCells } from './GameWordCells';
+import { getGridTemplateAreas } from './grid-template-service';
 import './grid.css';
 import { LetterCells } from './LetterCells';
 import { ScoreCells } from './ScoreCells';
@@ -25,7 +26,14 @@ export const GuessWordGrid = ({
   };
 
   return (
-    <form className={`guess-word-grid ${gameWordLength === 7 && '--7-columns'}`} onSubmit={handleSubmit}>
+    <form
+      className="guess-word-grid"
+      style={{
+        gridTemplateAreas: getGridTemplateAreas(gameWordLength, variant),
+        gridTemplateColumns: `repeat(${gameWordLength}, var(--cell-size))`,
+      }}
+      onSubmit={handleSubmit}
+    >
       <GameWordCells gameWordLength={gameWordLength} gameWordRevealed={gameWordRevealed} />
 
       {Array.from({ length: 11 }).map((_, rowIndex) => (

@@ -64,7 +64,7 @@ export type ClientGameRound = {
 };
 
 export type ClientGameState = {
-  gameWordLength: number;
+  gameWordLength: GameWordLength;
   gameWordRevealed: string;
   rounds: ClientGameRound[];
   bonusPoints: number;
@@ -85,7 +85,7 @@ export const useGameState = ({ code }: UseGameStateProps) => {
 
   /** Get the Game State meant to display on the client. */
   const clientGameState: ClientGameState = {
-    gameWordLength: state.gameWord.length,
+    gameWordLength: state.gameWord.length as GameWordLength,
     gameWordRevealed: state.isGameOver ? state.gameWord : '',
     rounds: state.gameRounds.map((gameRound) => ({
       letters: ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number),
