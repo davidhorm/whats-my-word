@@ -19,6 +19,7 @@ export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex, disabl
   const guessWordLength = gameWordLength + GUESS_WORD_LENGTHS[rowIndex];
   const inputProps = Array.from({ length: guessWordLength }).map((_, colIndex) => ({
     disabled,
+    required: true,
     className: 'guess-word-cell --letter-cell --align-center',
     style: { gridArea: `round-${rowIndex}-letter-${colIndex}` },
   }));
