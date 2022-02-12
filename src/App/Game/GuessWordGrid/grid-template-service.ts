@@ -41,7 +41,7 @@ const getSeventhLetterColumns = (gameWordLength: GameWordLength, index: number) 
 
 const getScoreCells = (scoreCellsVariant: ScoreCellsVariant, index: number) => {
   const scoreColumns = [
-    '.                ',
+    'code-label       ',
     'round-0-score    ',
     'round-1-score    ',
     'round-2-score    ',
@@ -58,7 +58,7 @@ const getScoreCells = (scoreCellsVariant: ScoreCellsVariant, index: number) => {
   ];
 
   const letterCountColumns = [
-    '.                        .',
+    'code-label               code-label',
     'round-0-matching-letter  round-0-non-matching-letter',
     'round-1-matching-letter  round-1-non-matching-letter',
     'round-2-matching-letter  round-2-non-matching-letter',

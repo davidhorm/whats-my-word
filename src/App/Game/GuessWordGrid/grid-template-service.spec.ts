@@ -14,7 +14,7 @@ describe('getGridTemplateAreas', () => {
       ${'CORRECTNESS'}
     `('AND scoreCellVariant = $scoreCellVariant', ({ scoreCellVariant }: { scoreCellVariant: ScoreCellsVariant }) => {
       const expected6ScoreTemplate = `
-  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5    .                "
+  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5    code-label       "
   "round-0-letter-0   round-0-letter-1   round-0-letter-2   .                  .                  .                     round-0-score    "
   "round-1-letter-0   round-1-letter-1   round-1-letter-2   round-1-letter-3   .                  .                     round-1-score    "
   ".                  round-2-letter-0   round-2-letter-1   round-2-letter-2   round-2-letter-3   .                     round-2-score    "
@@ -31,7 +31,7 @@ describe('getGridTemplateAreas', () => {
 `;
 
       const expected6CorrectnessTemplate = `
-  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5    .                        ."
+  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5    code-label               code-label"
   "round-0-letter-0   round-0-letter-1   round-0-letter-2   .                  .                  .                     round-0-matching-letter  round-0-non-matching-letter"
   "round-1-letter-0   round-1-letter-1   round-1-letter-2   round-1-letter-3   .                  .                     round-1-matching-letter  round-1-non-matching-letter"
   ".                  round-2-letter-0   round-2-letter-1   round-2-letter-2   round-2-letter-3   .                     round-2-matching-letter  round-2-non-matching-letter"
@@ -48,7 +48,7 @@ describe('getGridTemplateAreas', () => {
 `;
 
       const expected7ScoreTemplate = `
-  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5  game-word-letter-6  .                "
+  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5  game-word-letter-6  code-label       "
   "round-0-letter-0   round-0-letter-1   round-0-letter-2   .                  .                  .                   .                   round-0-score    "
   "round-1-letter-0   round-1-letter-1   round-1-letter-2   round-1-letter-3   .                  .                   .                   round-1-score    "
   ".                  round-2-letter-0   round-2-letter-1   round-2-letter-2   round-2-letter-3   .                   .                   round-2-score    "
@@ -65,7 +65,7 @@ describe('getGridTemplateAreas', () => {
 `;
 
       const expected7CorrectnessTemplate = `
-  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5  game-word-letter-6  .                        ."
+  "game-word-letter-0 game-word-letter-1 game-word-letter-2 game-word-letter-3 game-word-letter-4 game-word-letter-5  game-word-letter-6  code-label               code-label"
   "round-0-letter-0   round-0-letter-1   round-0-letter-2   .                  .                  .                   .                   round-0-matching-letter  round-0-non-matching-letter"
   "round-1-letter-0   round-1-letter-1   round-1-letter-2   round-1-letter-3   .                  .                   .                   round-1-matching-letter  round-1-non-matching-letter"
   ".                  round-2-letter-0   round-2-letter-1   round-2-letter-2   round-2-letter-3   .                   .                   round-2-matching-letter  round-2-non-matching-letter"

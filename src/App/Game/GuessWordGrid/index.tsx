@@ -1,6 +1,7 @@
 import { ComponentProps, FormEvent, Fragment, useState } from 'react';
 import type { GameRoundNumber } from '../../../domain/guess-word-service';
 import type { ClientGameState } from '../../../use-cases/use-game-state';
+import { CodeLabel } from './CodeLabel';
 import { FinalScoreRows } from './FinalScoreRows';
 import { GameWordCells } from './GameWordCells';
 import { getGridTemplateAreas } from './grid-template-service';
@@ -9,10 +10,13 @@ import { LetterCells } from './LetterCells';
 import { ScoreCells } from './ScoreCells';
 import { SubmitButton } from './SubmitButton';
 
-type GuessWordGridProp = Omit<ClientGameState, 'validationRule'> & Pick<ComponentProps<typeof ScoreCells>, 'variant'>;
+type GuessWordGridProp = Omit<ClientGameState, 'validationRule'> &
+  Pick<ComponentProps<typeof ScoreCells>, 'variant'> &
+  ComponentProps<typeof CodeLabel>;
 
 export const GuessWordGrid = ({
   bonusPoints,
+  code,
   gameWordLength,
   gameWordRevealed,
   rounds = [],
@@ -37,6 +41,8 @@ export const GuessWordGrid = ({
       onSubmit={handleSubmit}
     >
       <GameWordCells gameWordLength={gameWordLength} gameWordRevealed={gameWordRevealed} />
+
+      <CodeLabel code={code} />
 
       {Array.from({ length: 11 }).map((_, rowIndex) => (
         <Fragment key={rowIndex}>

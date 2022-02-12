@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
+import type { GameWordCode } from '../../domain/game-word-service';
 import { useGameState } from '../../use-cases/use-game-state';
 import { GuessWordGrid } from './GuessWordGrid';
 
-type Props = { code: string };
+type Props = { code: GameWordCode };
 export const Game = ({ code }: Props) => {
   const { clientGameState } = useGameState({ code });
 
@@ -13,5 +14,5 @@ export const Game = ({ code }: Props) => {
     document.getElementById(cellId)?.focus();
   }, [clientGameState]);
 
-  return <GuessWordGrid {...clientGameState} variant="CORRECTNESS" />;
+  return <GuessWordGrid {...clientGameState} code={code} variant="CORRECTNESS" />;
 };
