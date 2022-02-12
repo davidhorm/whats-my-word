@@ -23,6 +23,7 @@ export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex, disabl
     required: true,
     className: `guess-word-cell --letter-cell --align-center ${disabled && '--disabled-cell'}`,
     style: { gridArea: `round-${rowIndex}-letter-${colIndex}` },
+    id: `round-${rowIndex}-letter-${colIndex}`,
   }));
 
   if (guessWord) return <LetterButtons guessWord={guessWord} rowIndex={rowIndex} />;
