@@ -12,7 +12,7 @@ export const SubmitButton = ({ scoreCellsVariant, rowIndex }: Props) => (
   <input
     type="submit"
     value="SUBMIT"
-    className="guess-word-cell --score-cell"
+    className="guess-word-cell --score-cell --cursor"
     style={getStyle(scoreCellsVariant, rowIndex)}
   />
 );

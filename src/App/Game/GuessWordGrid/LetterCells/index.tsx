@@ -1,5 +1,6 @@
 import { ComponentProps } from 'react';
-import { IndividualCharacterInputs } from './IndividualCharacterInputs';
+import { IndividualCharacterInputs } from '../IndividualCharacterInputs';
+import { LetterButtons } from './LetterButtons';
 
 /**
  * The guess word lengths. Add with the actual word length to get the value.
@@ -20,9 +21,11 @@ export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex, disabl
   const inputProps = Array.from({ length: guessWordLength }).map((_, colIndex) => ({
     disabled,
     required: true,
-    className: 'guess-word-cell --letter-cell --align-center',
+    className: `guess-word-cell --letter-cell --align-center ${disabled && '--disabled-cell'}`,
     style: { gridArea: `round-${rowIndex}-letter-${colIndex}` },
   }));
+
+  if (guessWord) return <LetterButtons guessWord={guessWord} rowIndex={rowIndex} />;
 
   return (
     <IndividualCharacterInputs amount={guessWordLength} inputProps={inputProps} value={guessWord} onChange={onChange} />
