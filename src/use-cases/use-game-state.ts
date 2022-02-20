@@ -73,9 +73,9 @@ export type ClientGameState = {
   submitGuessWord?: (guessWord: ValidGuessWord) => void;
 };
 
-type UseGameStateProps = { code: GameWordCode };
+type UseGameStateProps = { code?: GameWordCode };
 export const useGameState = ({ code }: UseGameStateProps) => {
-  const gameWord = TransformToGameWord(code);
+  const gameWord = TransformToGameWord(code!); // TODO: handle undefined code
   const [state, dispatch] = useReducer(reducer, buildInitialGameState(gameWord));
 
   const submitGuessWord = (guessWord: ValidGuessWord) => {

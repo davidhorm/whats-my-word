@@ -6,4 +6,4 @@ export default {
 };
 
 /* eslint-disable-next-line prettier/prettier */
-export const Default = () => <NewGameMenu setGameCode={() => { }} />;
+export const Default = () => <NewGameMenu />;

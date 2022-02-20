@@ -4,10 +4,10 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useInitGameState } from '../../use-cases/use-init-game-state';
 
-type NewGameProps = { setGameCode: Function };
-export const NewGame = ({ setGameCode }: NewGameProps) => {
+export const NewGame = () => {
   const { GetGameWordCodeValidationRule } = useInitGameState;
   const [code, setCode] = useState('');
 
@@ -27,7 +27,8 @@ export const NewGame = ({ setGameCode }: NewGameProps) => {
         color="primary"
         startIcon={<SportsEsportsIcon />}
         size="large"
-        onClick={() => setGameCode(code)}
+        component={Link}
+        to={code}
       >
         New Game
       </Button>
