@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { useInitGameState } from '../../use-cases/use-init-game-state';
 
 export const GenerateCode = () => {
-  const { GenerateGameWordCode, GetGameWordValidationRule } = useInitGameState;
+  const { GenerateGameWordCode, GetGameWordValidationRule, GenerateRandomGameWordCode } = useInitGameState;
   const [word, setWord] = useState('');
   const [code, setCode] = useState('');
 
@@ -20,12 +20,21 @@ export const GenerateCode = () => {
       <Typography>Generate a code for your friend.</Typography>
       <TextField
         label="6 or 7 letter word"
+        size="small"
         {...GetGameWordValidationRule}
         value={word}
+        variant="outlined"
         onChange={(e) => setWord(e.target.value)}
       />
       <Button variant="contained" onClick={handleGenerateCode}>
         Generate Code
+      </Button>
+      <Typography>Or generate random code:</Typography>
+      <Button variant="contained" onClick={() => setCode(GenerateRandomGameWordCode(6))}>
+        6-letter word
+      </Button>
+      <Button variant="contained" onClick={() => setCode(GenerateRandomGameWordCode(7))}>
+        7-letter word
       </Button>
       <Typography>CODE: {code}</Typography>
     </Paper>

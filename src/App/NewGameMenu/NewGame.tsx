@@ -8,14 +8,16 @@ import { useInitGameState } from '../../use-cases/use-init-game-state';
 
 type NewGameProps = { setGameCode: Function };
 export const NewGame = ({ setGameCode }: NewGameProps) => {
-  const { GetGameWordCodeValidationRule, GenerateRandomGameWordCode } = useInitGameState;
+  const { GetGameWordCodeValidationRule } = useInitGameState;
   const [code, setCode] = useState('');
 
   return (
     <Paper elevation={5}>
       <Typography>Enter code to start new game:</Typography>
       <TextField
-        label={'Code'}
+        label="Code"
+        size="small"
+        variant="outlined"
         value={code}
         onChange={(e) => setCode(e.target.value)}
         {...GetGameWordCodeValidationRule}
@@ -28,13 +30,6 @@ export const NewGame = ({ setGameCode }: NewGameProps) => {
         onClick={() => setGameCode(code)}
       >
         New Game
-      </Button>
-      <Typography>Or play random word:</Typography>
-      <Button variant="contained" onClick={() => setGameCode(GenerateRandomGameWordCode(6))}>
-        6-letter word
-      </Button>
-      <Button variant="contained" onClick={() => setGameCode(GenerateRandomGameWordCode(7))}>
-        7-letter word
       </Button>
     </Paper>
   );
