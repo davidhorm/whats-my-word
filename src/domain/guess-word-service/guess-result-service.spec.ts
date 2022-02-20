@@ -22,7 +22,7 @@ describe(CalculateGuessResult.name, () => {
       ({ guessWord, round, expectedScore }) => {
         const actualScore = CalculateGuessResult(gameWord, guessWord, round);
         expect(actualScore).toEqual(expectedScore);
-      }
+      },
     );
   });
 
@@ -47,7 +47,7 @@ describe(CalculateGuessResult.name, () => {
       ({ guessWord, round, expectedScore }) => {
         const actualScore = CalculateGuessResult(gameWord, guessWord, round);
         expect(actualScore).toEqual(expectedScore);
-      }
+      },
     );
   });
 });

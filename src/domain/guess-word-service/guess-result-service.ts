@@ -84,7 +84,7 @@ const scoreRemainingLetters = ({
 export const CalculateGuessResult = (
   gameWord: ValidGameWord,
   guessWord: ValidGuessWord,
-  roundNumber: GameRoundNumber
+  roundNumber: GameRoundNumber,
 ): GuessWordScore => {
   const remainingLetters = ParseGuessLetters(gameWord.length as GameWordLength, guessWord, roundNumber)
     .map(transformToActualAndGuessLetters(gameWord))

@@ -17,7 +17,7 @@ describe('useInitGameState', () => {
       const code = GenerateGameWordCode(providedGameWord);
       const isCodeValid = new RegExp(GetGameWordCodeValidationRule.pattern || '').test(code);
       expect(isCodeValid).toBe(true);
-    }
+    },
   );
 
   it.each`

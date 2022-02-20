@@ -8,7 +8,7 @@ import type { GameWordLength } from '../game-word-service';
 export const ParseGuessLetters = (
   gameWordLength: GameWordLength,
   guessWord: ValidGuessWord,
-  roundNumber: GameRoundNumber
+  roundNumber: GameRoundNumber,
 ): string[] => {
   const guessWordStartIndex = [0, 0, 1, 2, 3, 2, 1, 0, 0, 1, 0];
   const leftPadCount = guessWordStartIndex[roundNumber];
@@ -24,7 +24,7 @@ type GuessWordFormValidationRule = Pick<
 
 export const GetValidationRule = (
   gameWordLength: GameWordLength,
-  roundNumber: GameRoundNumber
+  roundNumber: GameRoundNumber,
 ): GuessWordFormValidationRule => {
   /**
    * The guess word lengths. Add with the actual word length to get the value.

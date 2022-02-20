@@ -21,7 +21,7 @@ describe('guess-word-service', () => {
         ({ guessWord, round, expectedArray }) => {
           const actualArray = ParseGuessLetters(6, guessWord, round);
           expect(actualArray).toEqual(expectedArray);
-        }
+        },
       );
     });
 
@@ -44,7 +44,7 @@ describe('guess-word-service', () => {
         ({ guessWord, round, expectedArray }) => {
           const actualArray = ParseGuessLetters(7, guessWord, round);
           expect(actualArray).toEqual(expectedArray);
-        }
+        },
       );
     });
   });
@@ -79,7 +79,7 @@ describe('guess-word-service', () => {
       ({ gameWordLength, round, expectedGuessWordLength }) => {
         const rule = GetValidationRule(gameWordLength, round);
         expect(rule.maxLength).toBe(expectedGuessWordLength);
-      }
+      },
     );
   });
 });
