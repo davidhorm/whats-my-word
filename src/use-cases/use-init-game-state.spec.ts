@@ -25,7 +25,7 @@ describe('useInitGameState', () => {
     ${6}
     ${7}
   `(`WHEN ${GenerateRandomGameWordCode.name}($gameWordLength), THEN code generated is valid`, ({ gameWordLength }) => {
-    const randomCode = GenerateRandomGameWordCode(gameWordLength, -1);
+    const randomCode = GenerateRandomGameWordCode(gameWordLength);
     const isCodeValid = new RegExp(GetGameWordCodeValidationRule.pattern || '').test(randomCode);
     expect(isCodeValid).toBe(true);
   });

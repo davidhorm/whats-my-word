@@ -59,6 +59,8 @@ module.exports = {
      */
     "plugin:react/jsx-runtime",
 
+    "plugin:storybook/recommended",
+
     /**
      * THESE PRETTIER RULES SHOULD ALWAYS BE LAST CONFIG IN EXTENDS ARRAY!
      * Turns off all ESLint rules that are unnecessary or might conflict with Prettier.
@@ -95,12 +97,19 @@ module.exports = {
     'spaced-comment': ['error', 'always', { 'markers': ['/'] }], // Allow triple slash comments used in *.d.ts files
     'no-loops/no-loops': 2, // https://github.com/buildo/eslint-plugin-no-loops#why
     'eslint-comments/disable-enable-pair': ['error', { 'allowWholeFile': true }], // Allow disabling for the whole file
+    'eslint-comments/no-unlimited-disable': 'warn', // sometimes I want to build something w/o fixing all the linting
     'react/require-default-props': 0, // defaultProps will be deprecated. https://twitter.com/dan_abramov/status/1133878326358171650?s=20
     '@typescript-eslint/no-unused-expressions': 0, // disabling because can't do `this && that()`
 
     // Inspired by https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
     'import/prefer-default-export': 'off',
-    'import/no-default-export': 'error', // however will need default export if doing React.lazy
+
+    // Importing dev specific items in stories and tests.
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-extraneous-dependencies.md
+    "import/no-extraneous-dependencies": [
+      "error",
+      { "devDependencies": ["**/*.stories.tsx", "**/*.spec.tsx"] }
+    ],
   },
   ignorePatterns: [
     'build/',

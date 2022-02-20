@@ -1,14 +1,6 @@
 .container {
-  height: 100%;
-  max-width: 15rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 1rem;
-  padding: 1rem;
-}
-
-.slider {
-  margin-top: 2rem;
 }

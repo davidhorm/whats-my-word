@@ -62,7 +62,7 @@ describe('game-word-code-service', () => {
       ${6}       | ${new RegExp(`^[A-Z]{3}$`)}
       ${7}       | ${new RegExp(`^[A-Z]{4}$`)}
     `('WHEN wordLength=$wordLength, then pattern=$pattern', ({ wordLength, pattern }) => {
-      const code = GenerateRandomGameWordCode(wordLength, -1);
+      const code = GenerateRandomGameWordCode(wordLength);
       expect(pattern.test(code)).toBeTruthy();
     });
   });
