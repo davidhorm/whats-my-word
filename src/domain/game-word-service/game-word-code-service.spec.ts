@@ -9,6 +9,19 @@ import {
 } from './game-word-code-service';
 
 describe('game-word-code-service', () => {
+  describe(TransformToGameWord.name, () => {
+    it.each`
+      code
+      ${'AB' /* too short */}
+      ${'ABCDE' /* too long */}
+      ${'0BC' /* has numbers */}
+      ${'0BCD' /* has numbers */}
+    `('WHEN invalid code=$code, THEN returns empty string', ({ code }) => {
+      const actualCode = TransformToGameWord(code);
+      expect(actualCode).toBe('');
+    });
+  });
+
   describe.each`
     gameWord     | wordCode
     ${'abatis'}  | ${'AAA'}

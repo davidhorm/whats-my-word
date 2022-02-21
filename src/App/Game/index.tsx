@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGameState } from '../../use-cases/use-game-state';
+import { NewGameMenu } from '../NewGameMenu';
 import { GuessWordGrid } from './GuessWordGrid';
 
 export const Game = () => {
@@ -13,6 +14,14 @@ export const Game = () => {
     const cellId = `round-${rowIndex}-letter-0`;
     document.getElementById(cellId)?.focus();
   }, [clientGameState]);
+
+  if (!code || !clientGameState.isGameStateValid)
+    return (
+      <div>
+        <span className="--mono-font">{code}</span> is an invalid code.
+        <NewGameMenu />
+      </div>
+    );
 
   return <GuessWordGrid {...clientGameState} code={code!} variant="CORRECTNESS" />;
 };
