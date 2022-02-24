@@ -29,7 +29,10 @@ export const IndividualCharacterInputs = ({
 
   const changeFocus = (direction: 'next' | 'previous', target: HTMLInputElement) => {
     const sibling = target?.[`${direction}ElementSibling`] as HTMLInputElement;
-    typeof sibling?.select === 'function' && sibling.select();
+
+    if (sibling.type === 'submit' && !!sibling.focus) sibling.focus();
+
+    !!sibling.select && sibling.select();
   };
 
   const handleCharacterChange: ChangeEventHandler<HTMLInputElement> = ({ target }) => {

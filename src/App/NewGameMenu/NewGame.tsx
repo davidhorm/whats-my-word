@@ -2,10 +2,10 @@ import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useInitGameState } from '../../use-cases/use-init-game-state';
+import { PlaySvg } from './GenerateCode/CodeActions/PlaySvg';
 
 export const NewGame = () => {
   const { GetGameWordCodeValidationRule } = useInitGameState;
@@ -23,14 +23,7 @@ export const NewGame = () => {
         autoComplete="off"
         {...GetGameWordCodeValidationRule}
       />
-      <Button
-        variant="contained"
-        color="primary"
-        startIcon={<SportsEsportsIcon />}
-        size="large"
-        component={Link}
-        to={code}
-      >
+      <Button variant="contained" color="primary" startIcon={<PlaySvg />} size="large" component={Link} to={code}>
         New Game
       </Button>
     </Paper>
