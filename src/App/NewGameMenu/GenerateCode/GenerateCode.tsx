@@ -3,7 +3,8 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
-import { useInitGameState } from '../../use-cases/use-init-game-state';
+import { useInitGameState } from '../../../use-cases/use-init-game-state';
+import { CodeActions } from './CodeActions';
 
 export const GenerateCode = () => {
   const { GenerateGameWordCode, GetGameWordValidationRule, GenerateRandomGameWordCode } = useInitGameState;
@@ -21,6 +22,7 @@ export const GenerateCode = () => {
       <TextField
         label="6 or 7 letter word"
         size="small"
+        autoComplete="off"
         {...GetGameWordValidationRule}
         value={word}
         variant="outlined"
@@ -36,7 +38,7 @@ export const GenerateCode = () => {
       <Button variant="contained" onClick={() => setCode(GenerateRandomGameWordCode(7))}>
         7-letter word
       </Button>
-      <Typography>CODE: {code}</Typography>
+      <CodeActions code={code} />
     </Paper>
   );
 };

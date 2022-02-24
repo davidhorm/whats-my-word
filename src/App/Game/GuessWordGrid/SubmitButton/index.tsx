@@ -1,3 +1,4 @@
+import { Button } from '@material-ui/core';
 import type { CSSProperties } from 'react';
 import type { GameRoundNumber } from '../../../../domain/guess-word-service';
 import type { ScoreCellsVariant } from '../ScoreCells';
@@ -9,10 +10,14 @@ const getStyle = (scoreCellsVariant: ScoreCellsVariant, rowIndex: GameRoundNumbe
 
 type Props = { scoreCellsVariant: ScoreCellsVariant; rowIndex: GameRoundNumber };
 export const SubmitButton = ({ scoreCellsVariant, rowIndex }: Props) => (
-  <input
+  <Button
+    variant="contained"
+    color="primary"
+    size="small"
     type="submit"
-    value="SUBMIT"
     className="guess-word-cell --score-cell --cursor"
     style={getStyle(scoreCellsVariant, rowIndex)}
-  />
+  >
+    SUBMIT
+  </Button>
 );

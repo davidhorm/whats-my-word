@@ -64,6 +64,7 @@ export type ClientGameRound = {
 };
 
 export type ClientGameState = {
+  isGameStateValid: boolean;
   gameWordLength: GameWordLength;
   gameWordRevealed: string;
   rounds: ClientGameRound[];
@@ -73,7 +74,7 @@ export type ClientGameState = {
   submitGuessWord?: (guessWord: ValidGuessWord) => void;
 };
 
-type UseGameStateProps = { code: GameWordCode };
+type UseGameStateProps = { code?: GameWordCode };
 export const useGameState = ({ code }: UseGameStateProps) => {
   const gameWord = TransformToGameWord(code);
   const [state, dispatch] = useReducer(reducer, buildInitialGameState(gameWord));
@@ -85,6 +86,7 @@ export const useGameState = ({ code }: UseGameStateProps) => {
 
   /** Get the Game State meant to display on the client. */
   const clientGameState: ClientGameState = {
+    isGameStateValid: !!gameWord,
     gameWordLength: state.gameWord.length as GameWordLength,
     gameWordRevealed: state.isGameOver ? state.gameWord : '',
     rounds: state.gameRounds.map((gameRound) => ({
@@ -94,7 +96,7 @@ export const useGameState = ({ code }: UseGameStateProps) => {
     bonusPoints: calculateBonusPoints(state),
     totalScore: state.gameRounds.reduce(
       (previousValue, currentValue) => previousValue + currentValue.score.score,
-      calculateBonusPoints(state)
+      calculateBonusPoints(state),
     ),
     validationRule: !state.isGameOver
       ? GetValidationRule(state.gameWord.length as GameWordLength, state.currentRound)

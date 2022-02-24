@@ -48,7 +48,11 @@ export const GenerateGameWordCode = (word: string): GameWordCode => {
   return convertNumberToCode(codeNumber, wordLength);
 };
 
-export const TransformToGameWord = (code: GameWordCode): ValidGameWord => {
+const IsGameWordCodeValid = (code?: GameWordCode): boolean => !!code && /^([a-z]){3,4}$/.test(code.toLowerCase());
+
+export const TransformToGameWord = (code?: GameWordCode): ValidGameWord => {
+  if (!code || !IsGameWordCodeValid(code)) return '';
+
   const numerator = convertCodeToNumber(code);
   const listMap = {
     3: {
