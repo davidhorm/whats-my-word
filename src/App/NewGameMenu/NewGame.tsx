@@ -20,6 +20,7 @@ export const NewGame = () => {
         variant="outlined"
         value={code}
         onChange={(e) => setCode(e.target.value)}
+        autoComplete="off"
         {...GetGameWordCodeValidationRule}
       />
       <Button

@@ -22,6 +22,7 @@ export const GenerateCode = () => {
       <TextField
         label="6 or 7 letter word"
         size="small"
+        autoComplete="off"
         {...GetGameWordValidationRule}
         value={word}
         variant="outlined"
