@@ -3,8 +3,8 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
-import { useInitGameState } from '../../../use-cases/use-init-game-state';
-import { CodeActions } from './CodeActions';
+import { useInitGameState } from '../../use-cases/use-init-game-state';
+import { CodeActions } from './generate-code/CodeActions';
 
 export const GenerateCode = () => {
   const { GenerateGameWordCode, GetGameWordValidationRule, GenerateRandomGameWordCode } = useInitGameState;

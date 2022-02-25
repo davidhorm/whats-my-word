@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGameState } from '../../use-cases/use-game-state';
-import { NewGameMenu } from '../NewGameMenu';
-import { GuessWordGrid } from './GuessWordGrid';
+import { useGameState } from '../use-cases/use-game-state';
+import { GuessWordGrid } from './game/GuessWordGrid';
+import { NewGameMenu } from './NewGameMenu';
 
 export const Game = () => {
   const { code } = useParams();

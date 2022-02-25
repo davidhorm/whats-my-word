@@ -1,7 +1,6 @@
 import Typography from '@material-ui/core/Typography';
-import { GenerateCode } from './GenerateCode';
-import './index.css';
-import { NewGame } from './NewGame';
+import { GenerateCode, NewGame } from './new-game-menu';
+import './NewGameMenu.css';
 
 export const NewGameMenu = () => (
   <>

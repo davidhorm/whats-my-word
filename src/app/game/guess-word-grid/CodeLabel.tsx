@@ -1,4 +1,4 @@
-import type { GameWordCode } from '../../../../domain/game-word-service';
+import type { GameWordCode } from '../../../domain/game-word-service';
 
 type Props = { code: GameWordCode };
 export const CodeLabel = ({ code }: Props) => (

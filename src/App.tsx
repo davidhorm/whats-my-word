@@ -1,7 +1,6 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import { Game } from './Game';
-import './index.css';
-import { NewGameMenu } from './NewGameMenu';
+import './App.css';
+import { Game, NewGameMenu } from './app/index';
 
 /**
  * App component.
