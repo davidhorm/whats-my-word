@@ -1,6 +1,6 @@
 import { ComponentProps } from 'react';
-import { IndividualCharacterInputs } from '../IndividualCharacterInputs';
-import { LetterButtons } from './LetterButtons';
+import { IndividualCharacterInputs } from '../../../components/IndividualCharacterInputs';
+import { LetterButtons } from './letter-cells/LetterButtons';
 
 /**
  * The guess word lengths. Add with the actual word length to get the value.

@@ -1,14 +1,16 @@
 import { ComponentProps, FormEvent, Fragment, useState } from 'react';
-import type { GameRoundNumber } from '../../../domain/guess-word-service';
-import type { ClientGameState } from '../../../use-cases/use-game-state';
-import { CodeLabel } from './CodeLabel';
-import { FinalScoreRows } from './FinalScoreRows';
-import { GameWordCells } from './GameWordCells';
-import { getGridTemplateAreas } from './grid-template-service';
-import './grid.css';
-import { LetterCells } from './LetterCells';
-import { ScoreCells } from './ScoreCells';
-import { SubmitButton } from './SubmitButton';
+import type { GameRoundNumber } from '../../domain/guess-word-service';
+import type { ClientGameState } from '../../use-cases/use-game-state';
+import {
+  CodeLabel,
+  FinalScoreRows,
+  GameWordCells,
+  getGridTemplateAreas,
+  LetterCells,
+  ScoreCells,
+  SubmitButton,
+} from './guess-word-grid';
+import './GuessWordGrid.css';
 
 type GuessWordGridProp = Omit<ClientGameState, 'validationRule'> &
   Pick<ComponentProps<typeof ScoreCells>, 'variant'> &

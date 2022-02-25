@@ -1,5 +1,5 @@
 import type { ComponentMeta, ComponentStory } from '@storybook/react';
-import { GuessWordGrid } from '.';
+import { GuessWordGrid } from './GuessWordGrid';
 
 export default {
   title: 'GuessWordGrid',

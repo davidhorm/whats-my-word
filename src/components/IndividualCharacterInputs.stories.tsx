@@ -1,6 +1,6 @@
 import { action } from '@storybook/addon-actions';
 import type { ComponentStory } from '@storybook/react';
-import { IndividualCharacterInputs } from '.';
+import { IndividualCharacterInputs } from './IndividualCharacterInputs';
 
 export default {
   title: IndividualCharacterInputs.name,

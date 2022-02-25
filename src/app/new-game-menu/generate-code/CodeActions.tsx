@@ -1,9 +1,7 @@
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { CopySvg } from './CopySvg';
-import { PlaySvg } from './PlaySvg';
-import { ShareSvg } from './ShareSvg';
+import { CopySvg, PlaySvg, ShareSvg } from './code-actions';
 
 type Props = { code?: string };
 export const CodeActions = ({ code }: Props) => {

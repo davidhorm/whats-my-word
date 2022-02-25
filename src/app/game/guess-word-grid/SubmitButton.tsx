@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core';
 import type { CSSProperties } from 'react';
-import type { GameRoundNumber } from '../../../../domain/guess-word-service';
-import type { ScoreCellsVariant } from '../ScoreCells';
+import type { GameRoundNumber } from '../../../domain/guess-word-service';
+import type { ScoreCellsVariant } from './ScoreCells';
 
 const getStyle = (scoreCellsVariant: ScoreCellsVariant, rowIndex: GameRoundNumber): CSSProperties =>
   scoreCellsVariant === 'SCORE'

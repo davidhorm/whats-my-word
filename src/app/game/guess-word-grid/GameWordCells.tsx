@@ -1,5 +1,5 @@
+import { IndividualCharacterInputs } from '../../../components/IndividualCharacterInputs';
 import type { ClientGameState } from '../../../use-cases/use-game-state';
-import { IndividualCharacterInputs } from './IndividualCharacterInputs';
 
 type GameWordCellsProps = Pick<ClientGameState, 'gameWordRevealed' | 'gameWordLength'>;
 
