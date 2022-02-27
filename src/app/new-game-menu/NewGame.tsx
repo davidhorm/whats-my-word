@@ -4,8 +4,8 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { PlaySvg } from '../../components/icons';
 import { useInitGameState } from '../../use-cases/use-init-game-state';
-import { PlaySvg } from './generate-code/code-actions/PlaySvg';
 
 export const NewGame = () => {
   const { GetGameWordCodeValidationRule } = useInitGameState;
