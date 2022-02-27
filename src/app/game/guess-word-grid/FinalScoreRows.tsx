@@ -4,17 +4,9 @@ type FinalScoreRowsProps = Pick<ClientGameState, 'gameWordRevealed' | 'bonusPoin
 
 export const FinalScoreRows = ({ gameWordRevealed, bonusPoints, totalScore }: FinalScoreRowsProps) => (
   <>
-    <span className="--align-right" style={{ gridArea: 'bonus-point-label' }}>
-      Final Guess Bonus Points:
-    </span>
-    <span className="--align-right --mono-font" style={{ gridArea: 'bonus-point-value' }}>
-      {gameWordRevealed ? bonusPoints : 'N/A'}
-    </span>
-    <span className="--align-right" style={{ gridArea: 'total-score-label' }}>
-      Total Score:
-    </span>
-    <span className="--align-right --mono-font" style={{ gridArea: 'total-score-value' }}>
-      {totalScore}
-    </span>
+    <span className="text-right [grid-area:bonus-point-label]">Final Guess Bonus Points:</span>
+    <span className="text-right font-mono [grid-area:bonus-point-value]">{gameWordRevealed ? bonusPoints : 'N/A'}</span>
+    <span className="text-right [grid-area:total-score-label]">Total Score:</span>
+    <span className="text-right font-mono [grid-area:total-score-value]">{totalScore}</span>
   </>
 );

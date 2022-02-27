@@ -1,5 +1,4 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import './App.css';
 import { Game, NewGameMenu } from './app/index';
 
 /**
@@ -10,9 +9,9 @@ export const App = () => (
     <Route
       path="/whats-my-word"
       element={
-        <main className="main">
+        <div className="mx-auto max-w-md font-sans antialiased">
           <Outlet />
-        </main>
+        </div>
       }
     >
       <Route index element={<NewGameMenu />} />

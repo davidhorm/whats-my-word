@@ -1,14 +1,14 @@
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { CopySvg, PlaySvg, ShareSvg } from './code-actions';
+import { CopySvg, PlaySvg, ShareSvg } from '../../../components/icons';
 
 type Props = { code?: string };
 export const CodeActions = ({ code }: Props) => {
   const navigate = useNavigate();
   return (
     <div>
-      <span className="--mono-font">CODE: {code}</span>
+      <span className={`font-mono ${!code && 'opacity-25'}`}>CODE: {code}</span>
       <ButtonGroup>
         <IconButton title="Copy Code" onClick={() => !!code && navigator.clipboard.writeText(code)} disabled={!code}>
           <CopySvg />

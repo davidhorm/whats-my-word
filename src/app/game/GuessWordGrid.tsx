@@ -10,7 +10,6 @@ import {
   ScoreCells,
   SubmitButton,
 } from './guess-word-grid';
-import './GuessWordGrid.css';
 
 type GuessWordGridProp = Omit<ClientGameState, 'validationRule'> &
   Pick<ComponentProps<typeof ScoreCells>, 'variant'> &
@@ -35,7 +34,7 @@ export const GuessWordGrid = ({
 
   return (
     <form
-      className="guess-word-grid"
+      className="grid gap-2 [--cell-size:clamp(1.5rem,7.5vw,2rem)] [grid-template-rows:repeat(12,var(--cell-size))]"
       style={{
         gridTemplateAreas: getGridTemplateAreas(gameWordLength, variant),
         gridTemplateColumns: `repeat(${gameWordLength + 2}, var(--cell-size))`,
