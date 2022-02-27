@@ -12,32 +12,31 @@ export const NewGame = () => {
   const [code, setCode] = useState('');
 
   return (
-    <Paper elevation={5}>
+    <Paper elevation={5} className="w-full p-4">
       <Typography>Enter code to start new game:</Typography>
-      <TextField
-        label="Code"
-        size="small"
-        variant="outlined"
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        autoComplete="off"
-        {...GetGameWordCodeValidationRule}
-      />
-      <Button variant="contained" color="primary" startIcon={<PlaySvg />} size="large" component={Link} to={code}>
-        New Game
-      </Button>
+      <div className="mt-1 flex flex-row gap-1">
+        <TextField
+          label="Code"
+          size="small"
+          variant="outlined"
+          value={code}
+          onChange={(e) => setCode(e.target.value)}
+          autoComplete="off"
+          fullWidth
+          {...GetGameWordCodeValidationRule}
+        />
+        <Button
+          className="w-40 whitespace-nowrap"
+          variant="contained"
+          color="primary"
+          startIcon={<PlaySvg />}
+          size="small"
+          component={Link}
+          to={code}
+        >
+          New Game
+        </Button>
+      </div>
     </Paper>
   );
 };
-
-/* <hr />
-       <Button
-        className="button"
-        variant="contained"
-        color="default"
-        startIcon={<YouTubeIcon />}
-        href="https://www.youtube.com/watch?v=CKpNrJ30-0M"
-        target="_blank"
-      >
-        How to Play
-      </Button> */

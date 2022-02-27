@@ -8,7 +8,7 @@ export const CodeActions = ({ code }: Props) => {
   const navigate = useNavigate();
   return (
     <div>
-      <span className="--mono-font">CODE: {code}</span>
+      <span className={`font-mono ${!code && 'opacity-25'}`}>CODE: {code}</span>
       <ButtonGroup>
         <IconButton title="Copy Code" onClick={() => !!code && navigator.clipboard.writeText(code)} disabled={!code}>
           <CopySvg />

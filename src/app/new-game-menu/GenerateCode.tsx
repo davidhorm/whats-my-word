@@ -5,9 +5,10 @@ import Typography from '@material-ui/core/Typography';
 import { useState } from 'react';
 import { useInitGameState } from '../../use-cases/use-init-game-state';
 import { CodeActions } from './generate-code/CodeActions';
+import { GenerateRandomCode } from './generate-code/GenerateRandomCode';
 
 export const GenerateCode = () => {
-  const { GenerateGameWordCode, GetGameWordValidationRule, GenerateRandomGameWordCode } = useInitGameState;
+  const { GenerateGameWordCode, GetGameWordValidationRule } = useInitGameState;
   const [word, setWord] = useState('');
   const [code, setCode] = useState('');
 
@@ -17,7 +18,7 @@ export const GenerateCode = () => {
   };
 
   return (
-    <Paper elevation={4}>
+    <Paper elevation={4} className="flex w-full flex-col gap-1 p-4">
       <Typography>Generate a code for your friend.</Typography>
       <TextField
         label="6 or 7 letter word"
@@ -31,14 +32,9 @@ export const GenerateCode = () => {
       <Button variant="contained" onClick={handleGenerateCode}>
         Generate Code
       </Button>
-      <Typography>Or generate random code:</Typography>
-      <Button variant="contained" onClick={() => setCode(GenerateRandomGameWordCode(6))}>
-        6-letter word
-      </Button>
-      <Button variant="contained" onClick={() => setCode(GenerateRandomGameWordCode(7))}>
-        7-letter word
-      </Button>
       <CodeActions code={code} />
+
+      <GenerateRandomCode setCode={setCode} />
     </Paper>
   );
 };
