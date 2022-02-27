@@ -12,7 +12,7 @@ export const ScoreCells = ({ rowIndex, variant = 'SCORE', score }: ScoreCellsPro
   <>
     {variant === 'SCORE' && (
       <span
-        className="guess-word-cell --align-right --score-cell --mono-font"
+        className="min-w-full rounded-sm border border-black/40 bg-cyan-100 p-0 text-right font-mono ring-inset [line-height:var(--cell-size)]"
         style={{ gridArea: `round-${rowIndex}-score` }}
       >
         {score?.score ?? <>&nbsp;</>}
@@ -22,13 +22,13 @@ export const ScoreCells = ({ rowIndex, variant = 'SCORE', score }: ScoreCellsPro
     {variant === 'CORRECTNESS' && (
       <>
         <span
-          className="guess-word-cell --matching-cell --mono-font --align-center"
+          className="rounded-sm border border-black/40 bg-green-100 p-0 text-center font-mono ring-inset [line-height:var(--cell-size)]"
           style={{ gridArea: `round-${rowIndex}-matching-letter` }}
         >
           {score?.matchingLetters ?? <>&nbsp;</>}
         </span>
         <span
-          className="guess-word-cell --non-matching-cell --mono-font --align-center"
+          className="rounded-sm border border-black/40 bg-yellow-100 p-0 text-center font-mono ring-inset [line-height:var(--cell-size)]"
           style={{ gridArea: `round-${rowIndex}-non-matching-letter` }}
         >
           {score?.nonMatchingLetters ?? <>&nbsp;</>}

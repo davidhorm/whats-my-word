@@ -18,10 +18,14 @@ export const Game = () => {
   if (!code || !clientGameState.isGameStateValid)
     return (
       <div>
-        <span className="--mono-font">{code}</span> is an invalid code.
+        <span className="font-mono">{code}</span> is an invalid code.
         <NewGameMenu />
       </div>
     );
 
-  return <GuessWordGrid {...clientGameState} code={code!} variant="CORRECTNESS" />;
+  return (
+    <main className="mt-4 flex flex-col items-center">
+      <GuessWordGrid {...clientGameState} code={code!} variant="CORRECTNESS" />
+    </main>
+  );
 };

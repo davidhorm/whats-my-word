@@ -15,7 +15,7 @@ export const SubmitButton = ({ scoreCellsVariant, rowIndex }: Props) => (
     color="primary"
     size="small"
     type="submit"
-    className="guess-word-cell --score-cell --cursor"
+    className="cursor-pointer rounded-sm border border-black/40 p-0 ring-inset"
     style={getStyle(scoreCellsVariant, rowIndex)}
   >
     SUBMIT

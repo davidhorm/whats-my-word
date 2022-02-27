@@ -1,5 +1,4 @@
 import { Outlet, Route, Routes } from 'react-router-dom';
-import './App.css';
 import { Game, NewGameMenu } from './app/index';
 
 /**

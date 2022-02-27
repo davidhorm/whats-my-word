@@ -1,6 +1,6 @@
 import { MouseEventHandler, useState } from 'react';
 
-const colorClassNames = ['--disabled-cell', '--matching-cell', '--non-matching-cell'];
+const colorClassNames = ['bg-zinc-500/25 text-black/40', 'bg-green-100', 'bg-yellow-100'];
 
 type Props = { guessWord: string; rowIndex: number };
 export const LetterButtons = ({ guessWord, rowIndex }: Props) => {
@@ -21,7 +21,7 @@ export const LetterButtons = ({ guessWord, rowIndex }: Props) => {
         <button
           key={colIndex}
           name={`${colIndex}`}
-          className={`guess-word-cell --letter-cell --align-center --cursor ${
+          className={`cursor-pointer rounded-sm border border-black/40 p-0 text-center text-2xl uppercase ring-inset ${
             colorClassNames[buttonColorIndices[colIndex]]
           }`}
           style={{ gridArea: `round-${rowIndex}-letter-${colIndex}` }}

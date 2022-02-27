@@ -1,5 +1,4 @@
 import { GenerateCode, NewGame } from './new-game-menu';
-import './NewGameMenu.css';
 
 export const NewGameMenu = () => (
   <main className="flex flex-col items-center gap-6">
