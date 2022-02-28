@@ -71,11 +71,12 @@ const scoreRemainingLetters = ({
     return { ...item, emoji: EMOJI.NON_MATCHING };
   });
 
+  const emojiResult = scoredLetters.map(({ emoji }) => emoji).join('');
   const matchingLetters = scoredLetters.filter(({ emoji }) => emoji === EMOJI.MATCHING).length;
   const nonMatchingLetters = scoredLetters.filter(({ emoji }) => emoji === EMOJI.NON_MATCHING).length;
   const score = matchingLetters * 1000 + nonMatchingLetters * 250;
 
-  return { matchingLetters, nonMatchingLetters, score };
+  return { matchingLetters, nonMatchingLetters, score, emojiResult };
 };
 
 /** Get the score of the Guess Word.  */
@@ -89,7 +90,7 @@ export const CalculateGuessResult = (
     .map(scoreMatchingLetters)
     .reduce(transformToRemainingLetters, initialRemainingLetters);
 
-  const { matchingLetters, nonMatchingLetters, score } = scoreRemainingLetters(remainingLetters);
+  const { matchingLetters, nonMatchingLetters, score, emojiResult } = scoreRemainingLetters(remainingLetters);
 
-  return { matchingLetters, nonMatchingLetters, score };
+  return { matchingLetters, nonMatchingLetters, score, emojiResult };
 };
