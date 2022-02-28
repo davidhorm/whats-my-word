@@ -68,6 +68,7 @@ export type ClientGameState = {
   gameWordLength: GameWordLength;
   gameWordRevealed: string;
   rounds: ClientGameRound[];
+  emojiResults: string;
   bonusPoints: number;
   totalScore: number;
   validationRule?: ReturnType<typeof GetValidationRule>;
@@ -94,6 +95,11 @@ export const useGameState = ({ code }: UseGameStateProps) => {
       const { emojiResult, ...score } = gameRound.score;
       return { letters, score };
     }),
+    emojiResults: state.isGameOver
+      ? state.gameRounds.reduce((previous, current) => {
+          return previous + '\n' + current.score.emojiResult;
+        }, '')
+      : '',
     bonusPoints: calculateBonusPoints(state),
     totalScore: state.gameRounds.reduce(
       (previousValue, currentValue) => previousValue + currentValue.score.score,

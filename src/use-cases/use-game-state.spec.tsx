@@ -9,17 +9,26 @@ describe(useGameState.name, () => {
     bonusPoints: 0,
     rounds: [],
     totalScore: 0,
+    emojiResults: '',
   };
 
   const queryId = 'clientGameState';
   const TestGameState = ({ code }: any) => {
     const {
-      clientGameState: { rounds, bonusPoints, totalScore, submitGuessWord, gameWordLength, gameWordRevealed },
+      clientGameState: {
+        rounds,
+        bonusPoints,
+        totalScore,
+        submitGuessWord,
+        gameWordLength,
+        gameWordRevealed,
+        emojiResults,
+      },
     } = useGameState({ code });
     return (
       <div>
         <code id={queryId}>
-          {JSON.stringify({ rounds, bonusPoints, totalScore, gameWordLength, gameWordRevealed })}
+          {JSON.stringify({ rounds, bonusPoints, totalScore, gameWordLength, gameWordRevealed, emojiResults })}
         </code>
         <label htmlFor="guess-word">Guess Word:</label>
         <input id="guess-word" type="text" />
@@ -72,6 +81,19 @@ describe(useGameState.name, () => {
 
     const finalGuesses = finalGuessLetters.map((letters, index) => ({ letters, score: finalGuessScores[index] }));
 
+    const finalEmojiResults = `
+⬜⬜⬛⬛⬛⬛
+⬜🟩🟨⬛⬛⬛
+⬛🟩⬜⬜⬛⬛
+⬛⬛⬜🟨⬜⬛
+⬛⬛⬛⬜⬜⬜
+⬛⬛⬜⬜⬜🟨
+⬛🟩⬜⬜⬜⬛
+🟩🟩🟨⬜⬛⬛
+🟩🟩🟨🟨⬜⬛
+⬛🟩🟨⬜⬜🟩
+🟩🟩🟩🟩🟩🟩`;
+
     const totalScores = [0, 1250, 2250, 2500, 2500, 2750, 3750, 6000, 8500, 10750, 16750 + 3000];
 
     guessWords.forEach((guessWord, index) => {
@@ -90,6 +112,7 @@ describe(useGameState.name, () => {
         rounds: finalGuesses.slice(0, index + 1),
         totalScore: totalScores[index],
         bonusPoints: index === 10 ? 3000 : 0,
+        emojiResults: index === 10 ? finalEmojiResults : '',
       });
     });
   });
@@ -132,6 +155,19 @@ describe(useGameState.name, () => {
 
     const finalGuesses = finalGuessLetters.map((letters, index) => ({ letters, score: finalGuessScores[index] }));
 
+    const finalEmojiResults = `
+🟨⬜⬛⬛⬛⬛
+⬜🟩⬜⬛⬛⬛
+⬛🟩⬜🟨⬛⬛
+⬛⬛🟨⬜🟩⬛
+⬛⬛⬛⬜🟨⬜
+⬛⬛⬜⬜⬜🟩
+⬛⬜⬜🟩🟨⬛
+⬜🟩⬜🟩⬛⬛
+⬜🟩🟩🟩⬜⬛
+⬛🟩🟩🟨🟩⬜
+⬜🟩🟩🟩🟩🟩`;
+
     const totalScores = [250, 1250, 2500, 3750, 4000, 5000, 6250, 8250, 11250, 14500, 19500];
 
     guessWords.forEach((guessWord, index) => {
@@ -150,6 +186,7 @@ describe(useGameState.name, () => {
         rounds: finalGuesses.slice(0, index + 1),
         totalScore: totalScores[index],
         bonusPoints: 0,
+        emojiResults: index === 10 ? finalEmojiResults : '',
       });
     });
   });

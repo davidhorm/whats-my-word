@@ -1,12 +1,11 @@
-import type { GuessWordScore } from '../../../domain/guess-word-service';
+import type { ClientGameRound } from '../../../use-cases/use-game-state';
 
 export type ScoreCellsVariant = 'SCORE' | 'CORRECTNESS';
 
 type ScoreCellsProps = {
   rowIndex: number;
   variant: ScoreCellsVariant;
-  score?: GuessWordScore;
-};
+} & Partial<Pick<ClientGameRound, 'score'>>;
 
 export const ScoreCells = ({ rowIndex, variant = 'SCORE', score }: ScoreCellsProps) => (
   <>
