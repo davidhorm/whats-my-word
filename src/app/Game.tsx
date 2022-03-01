@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGameState } from '../use-cases/use-game-state';
 import { GuessWordGrid } from './game/GuessWordGrid';
+import { SocialShareButton } from './game/SocialShareButton';
 import { NewGameMenu } from './NewGameMenu';
 
 export const Game = () => {
@@ -24,8 +25,9 @@ export const Game = () => {
     );
 
   return (
-    <main className="mt-4 flex flex-col items-center">
+    <main className="mt-4 flex flex-col items-center gap-4">
       <GuessWordGrid {...clientGameState} code={code!} variant="CORRECTNESS" />
+      <SocialShareButton emojiResults={clientGameState.emojiResults} totalScore={clientGameState.totalScore} />
     </main>
   );
 };
