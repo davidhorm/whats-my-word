@@ -14,6 +14,7 @@ export type GuessWordScore = {
   matchingLetters: number;
   nonMatchingLetters: number;
   score: number;
+  emojiResult: string;
 };
 
 /** **************

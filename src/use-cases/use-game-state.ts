@@ -60,7 +60,7 @@ const calculateBonusPoints = (state: GameState) =>
 
 export type ClientGameRound = {
   letters: string[];
-  score: GuessWordScore;
+  score: Omit<GuessWordScore, 'emojiResult'>;
 };
 
 export type ClientGameState = {
@@ -68,6 +68,7 @@ export type ClientGameState = {
   gameWordLength: GameWordLength;
   gameWordRevealed: string;
   rounds: ClientGameRound[];
+  emojiResults: string;
   bonusPoints: number;
   totalScore: number;
   validationRule?: ReturnType<typeof GetValidationRule>;
@@ -89,10 +90,16 @@ export const useGameState = ({ code }: UseGameStateProps) => {
     isGameStateValid: !!gameWord,
     gameWordLength: state.gameWord.length as GameWordLength,
     gameWordRevealed: state.isGameOver ? state.gameWord : '',
-    rounds: state.gameRounds.map((gameRound) => ({
-      letters: ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number),
-      score: gameRound.score,
-    })),
+    rounds: state.gameRounds.map((gameRound) => {
+      const letters = ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number);
+      const { emojiResult, ...score } = gameRound.score;
+      return { letters, score };
+    }),
+    emojiResults: state.isGameOver
+      ? state.gameRounds.reduce((previous, current) => {
+          return previous + '\n' + current.score.emojiResult;
+        }, '')
+      : '',
     bonusPoints: calculateBonusPoints(state),
     totalScore: state.gameRounds.reduce(
       (previousValue, currentValue) => previousValue + currentValue.score.score,

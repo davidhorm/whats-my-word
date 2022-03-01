@@ -2,11 +2,20 @@ import type { GameRoundNumber, GuessWordScore, ValidGuessWord } from '.';
 import type { GameWordLength, ValidGameWord } from '../game-word-service';
 import { ParseGuessLetters } from './guess-word-service';
 
+enum EMOJI {
+  EMPTY = '⬛',
+  MATCHING = '🟩',
+  NON_MATCHING = '🟨',
+  NON_EXISTING = '⬜',
+  UNKNOWN = '❓',
+}
+
 const transformToActualAndGuessLetters = (gameWord: ValidGameWord) => (guessLetter: string, index: number) => {
   const actualLetters = gameWord.split('');
   return {
     guessLetter,
     actualLetter: actualLetters[index],
+    emoji: !guessLetter ? EMOJI.EMPTY : EMOJI.UNKNOWN,
   };
 };
 
@@ -15,69 +24,59 @@ const scoreMatchingLetters = (item: ReturnType<ReturnType<typeof transformToActu
     return {
       actualLetter: '',
       guessLetter: '',
-      matchingLetters: 1,
-      score: 1000,
+      emoji: EMOJI.MATCHING,
     };
   }
 
-  return { ...item, matchingLetters: 0, score: 0 };
+  return item;
 };
 
-type RemainingLetters = GuessWordScore & { remainingActualLetters: string; remainingGuessLetters: string[] };
+type RemainingLetters = {
+  remainingActualLetters: string[];
+  guessLetters: Omit<ReturnType<typeof scoreMatchingLetters>, 'actualLetter'>[];
+};
 
 const initialRemainingLetters: RemainingLetters = {
-  remainingActualLetters: '',
-  remainingGuessLetters: [],
-  matchingLetters: 0,
-  nonMatchingLetters: 0,
-  score: 0,
+  remainingActualLetters: [],
+  guessLetters: [],
 };
 
 /** Transform to be used by `scoreRemainingLetters` */
-const transformToRemainingLetters = (previous: RemainingLetters, current: ReturnType<typeof scoreMatchingLetters>) => ({
-  remainingActualLetters: previous.remainingActualLetters + current.actualLetter,
-  remainingGuessLetters: current.guessLetter
-    ? previous.remainingGuessLetters.concat(current.guessLetter)
-    : previous.remainingGuessLetters,
-  matchingLetters: previous.matchingLetters + current.matchingLetters,
-  nonMatchingLetters: 0,
-  score: previous.score + current.score,
+const transformToRemainingLetters = (
+  previous: RemainingLetters,
+  { actualLetter, ...guessLetter }: ReturnType<typeof scoreMatchingLetters>,
+) => ({
+  remainingActualLetters: !!actualLetter
+    ? [...previous.remainingActualLetters, actualLetter]
+    : previous.remainingActualLetters,
+  guessLetters: [...previous.guessLetters, guessLetter],
 });
 
 /**
- * Recursive method to take each remaining guess letters, and see if they exist in the remaining actual letters.
+ * Score each remaining guess letters, and see if they exist in the remaining actual letters.
  *
  * @returns Any updates to remaining letters, and updated counts/scores.
  */
 const scoreRemainingLetters = ({
   remainingActualLetters,
-  remainingGuessLetters,
-  matchingLetters,
-  nonMatchingLetters,
-  score,
-}: RemainingLetters): RemainingLetters => {
-  const guessLetter = remainingGuessLetters.shift();
+  guessLetters,
+}: ReturnType<typeof transformToRemainingLetters>) => {
+  const scoredLetters = guessLetters.map((item) => {
+    if (!item.guessLetter) return item;
 
-  if (!guessLetter)
-    return { remainingActualLetters, remainingGuessLetters, matchingLetters, nonMatchingLetters, score };
+    const foundLetterIndex = remainingActualLetters.indexOf(item.guessLetter);
+    if (foundLetterIndex === -1) return { ...item, emoji: EMOJI.NON_EXISTING };
 
-  if (remainingActualLetters.includes(guessLetter)) {
-    return scoreRemainingLetters({
-      remainingActualLetters: remainingActualLetters.replace(guessLetter, ''),
-      remainingGuessLetters,
-      matchingLetters,
-      nonMatchingLetters: nonMatchingLetters + 1,
-      score: score + 250,
-    });
-  }
-
-  return scoreRemainingLetters({
-    remainingActualLetters,
-    remainingGuessLetters,
-    matchingLetters,
-    nonMatchingLetters,
-    score,
+    remainingActualLetters.splice(foundLetterIndex);
+    return { ...item, emoji: EMOJI.NON_MATCHING };
   });
+
+  const emojiResult = scoredLetters.map(({ emoji }) => emoji).join('');
+  const matchingLetters = scoredLetters.filter(({ emoji }) => emoji === EMOJI.MATCHING).length;
+  const nonMatchingLetters = scoredLetters.filter(({ emoji }) => emoji === EMOJI.NON_MATCHING).length;
+  const score = matchingLetters * 1000 + nonMatchingLetters * 250;
+
+  return { matchingLetters, nonMatchingLetters, score, emojiResult };
 };
 
 /** Get the score of the Guess Word.  */
@@ -91,7 +90,7 @@ export const CalculateGuessResult = (
     .map(scoreMatchingLetters)
     .reduce(transformToRemainingLetters, initialRemainingLetters);
 
-  const { matchingLetters, nonMatchingLetters, score } = scoreRemainingLetters(remainingLetters);
+  const { matchingLetters, nonMatchingLetters, score, emojiResult } = scoreRemainingLetters(remainingLetters);
 
-  return { matchingLetters, nonMatchingLetters, score };
+  return { matchingLetters, nonMatchingLetters, score, emojiResult };
 };
