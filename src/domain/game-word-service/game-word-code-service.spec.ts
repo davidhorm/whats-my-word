@@ -24,12 +24,12 @@ describe('game-word-code-service', () => {
 
   describe.each`
     gameWord     | wordCode
-    ${'abatis'}  | ${'AAA'}
-    ${'ballet'}  | ${'YND'}
-    ${'nephew'}  | ${'HIR'}
-    ${'cdroms'}  | ${'ZZZ'}
+    ${'abacas'}  | ${'AAA'}
+    ${'ballet'}  | ${'BKS'}
+    ${'nephew'}  | ${'OWS'}
+    ${'zyrian'}  | ${'ZZZ'}
     ${'aadhaar'} | ${'AAAA'}
-    ${'totties'} | ${'ZZZZ'}
+    ${'zymurgy'} | ${'ZZZZ'}
   `('sample GameWordCode to word Conversion', ({ gameWord, wordCode }) => {
     it(`${GenerateGameWordCode.name} > WHEN gameWord=${gameWord}, THEN code=${wordCode}`, () => {
       const actualWordCode = GenerateGameWordCode(gameWord);
