@@ -65,5 +65,6 @@ const useWordValidation = (minWordLength: WordLengths, maxWordLength: WordLength
   return { state, setWord, setTouched };
 };
 
-export const useGuessWordValidation = (wordLength: WordLengths) => useWordValidation(wordLength, wordLength);
+export const useGuessWordValidation = (wordLength: number) =>
+  useWordValidation(wordLength as WordLengths, wordLength as WordLengths);
 export const useGameWordValidation = () => useWordValidation(6, 7);

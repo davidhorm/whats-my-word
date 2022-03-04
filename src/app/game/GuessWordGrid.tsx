@@ -25,11 +25,11 @@ export const GuessWordGrid = ({
   variant,
   submitGuessWord,
 }: GuessWordGridProp) => {
-  const [guessWord, setGuessWord] = useState('');
+  const [state, setState] = useState({ guessWord: '', isValid: false });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitGuessWord && submitGuessWord(guessWord);
+    !!submitGuessWord && submitGuessWord(state.guessWord);
   };
 
   return (
@@ -52,7 +52,7 @@ export const GuessWordGrid = ({
             disabled={rowIndex !== rounds.length}
             gameWordLength={gameWordLength}
             guessWordLetters={rounds[rowIndex]?.letters}
-            onChange={(word) => setGuessWord(word)}
+            onChange={(guessWord: string, isValid: boolean) => setState({ guessWord, isValid })}
           />
 
           {rowIndex < rounds.length && (
@@ -60,7 +60,11 @@ export const GuessWordGrid = ({
           )}
 
           {rowIndex === rounds.length && (
-            <SubmitButton rowIndex={rowIndex as GameRoundNumber} scoreCellsVariant={variant} />
+            <SubmitButton
+              rowIndex={rowIndex as GameRoundNumber}
+              scoreCellsVariant={variant}
+              disabled={!state.isValid}
+            />
           )}
         </Fragment>
       ))}
