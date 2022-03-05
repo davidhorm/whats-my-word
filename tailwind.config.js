@@ -7,10 +7,11 @@ module.exports = {
       sans: ['Roboto', 'sans-serif'],
       mono: ['Roboto Mono', 'monospace']
     },
-    colors: {
-      error: '#f44336',
+    extend: {
+      colors: {
+        error: '#f44336',
+      },
     },
-    extend: {},
   },
   plugins: [],
 }
