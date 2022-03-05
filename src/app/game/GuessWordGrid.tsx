@@ -1,4 +1,4 @@
-import { ComponentProps, FormEvent, Fragment, useState } from 'react';
+import { ComponentProps, FormEvent, Fragment, useCallback, useState } from 'react';
 import type { GameRoundNumber } from '../../domain/guess-word-service';
 import type { ClientGameState } from '../../use-cases/use-game-state';
 import {
@@ -32,6 +32,11 @@ export const GuessWordGrid = ({
     !!submitGuessWord && submitGuessWord(state.guessWord);
   };
 
+  const handleLetterCellsChange = useCallback(
+    (guessWord: string, isValid: boolean) => setState({ guessWord, isValid }),
+    [],
+  );
+
   return (
     <form
       className="grid gap-2 [--cell-size:clamp(1.5rem,7.5vw,2rem)] [grid-template-rows:repeat(12,var(--cell-size))]"
@@ -52,7 +57,7 @@ export const GuessWordGrid = ({
             disabled={rowIndex !== rounds.length}
             gameWordLength={gameWordLength}
             guessWordLetters={rounds[rowIndex]?.letters}
-            onChange={(guessWord: string, isValid: boolean) => setState({ guessWord, isValid })}
+            onChange={handleLetterCellsChange}
           />
 
           {rowIndex < rounds.length && (

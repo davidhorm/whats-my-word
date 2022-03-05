@@ -24,7 +24,7 @@ export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex, disabl
 
   useEffect(() => {
     !!onChange && onChange(state.word, state.isValid);
-  }, [state, onChange]);
+  }, [state.word, state.isValid, onChange]);
 
   const inputProps = Array.from({ length: guessWordLength }).map((_, colIndex) => ({
     disabled,
