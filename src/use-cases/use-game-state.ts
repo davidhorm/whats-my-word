@@ -92,6 +92,7 @@ export const useGameState = ({ code }: UseGameStateProps) => {
     gameWordRevealed: state.isGameOver ? state.gameWord : '',
     rounds: state.gameRounds.map((gameRound) => {
       const letters = ParseGuessLetters(state.gameWord.length as GameWordLength, gameRound.guessWord, gameRound.number);
+      /* eslint-disable-next-line no-unused-vars */ // don't want to share emojis in client
       const { emojiResult, ...score } = gameRound.score;
       return { letters, score };
     }),
