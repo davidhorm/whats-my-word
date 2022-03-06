@@ -1,20 +1,29 @@
+import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import IconButton from '@material-ui/core/IconButton';
 import { useNavigate } from 'react-router-dom';
-import { CopySvg, PlaySvg, ShareSvg } from '../../../components/icons';
+import { ReactComponent as CopySvg } from '../../../components/icons/copy.svg';
+import { ReactComponent as PlaySvg } from '../../../components/icons/play.svg';
+import { ReactComponent as ShareSvg } from '../../../components/icons/share.svg';
 
 type Props = { code?: string };
 export const CodeActions = ({ code }: Props) => {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className="mt-4 flex items-center justify-between">
       <span className={`font-mono ${!code && 'opacity-25'}`}>CODE: {code}</span>
       <ButtonGroup>
-        <IconButton title="Copy Code" onClick={() => !!code && navigator.clipboard.writeText(code)} disabled={!code}>
-          <CopySvg />
-        </IconButton>
-        <IconButton
-          title="Share Code"
+        <Button
+          variant="contained"
+          startIcon={<CopySvg />}
+          disabled={!code}
+          onClick={() => !!code && navigator.clipboard.writeText(code)}
+        >
+          Copy
+        </Button>
+        <Button
+          variant="contained"
+          startIcon={<ShareSvg />}
+          disabled={!code}
           onClick={async () =>
             !!code &&
             (await navigator.share({
@@ -23,13 +32,12 @@ export const CodeActions = ({ code }: Props) => {
               url: `${window.location.href}/${code}`,
             }))
           }
-          disabled={!code}
         >
-          <ShareSvg />
-        </IconButton>
-        <IconButton title="Play Code" onClick={() => !!code && navigate(code)} disabled={!code}>
-          <PlaySvg />
-        </IconButton>
+          Share
+        </Button>
+        <Button variant="contained" startIcon={<PlaySvg />} disabled={!code} onClick={() => !!code && navigate(code)}>
+          Play
+        </Button>
       </ButtonGroup>
     </div>
   );

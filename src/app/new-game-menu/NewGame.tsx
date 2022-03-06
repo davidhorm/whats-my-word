@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { FormEventHandler, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PlaySvg } from '../../components/icons';
+import { ReactComponent as PlaySvg } from '../../components/icons/play.svg';
 import { useInitGameState } from '../../use-cases/use-init-game-state';
 
 const initialState = {
