@@ -1,4 +1,4 @@
-import { ComponentProps, FormEvent, Fragment, useState } from 'react';
+import { ComponentProps, FormEvent, Fragment, useCallback, useState } from 'react';
 import type { GameRoundNumber } from '../../domain/guess-word-service';
 import type { ClientGameState } from '../../use-cases/use-game-state';
 import {
@@ -25,12 +25,17 @@ export const GuessWordGrid = ({
   variant,
   submitGuessWord,
 }: GuessWordGridProp) => {
-  const [guessWord, setGuessWord] = useState('');
+  const [state, setState] = useState({ guessWord: '', isValid: false });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    submitGuessWord && submitGuessWord(guessWord);
+    !!submitGuessWord && submitGuessWord(state.guessWord);
   };
+
+  const handleLetterCellsChange = useCallback(
+    (guessWord: string, isValid: boolean) => setState({ guessWord, isValid }),
+    [],
+  );
 
   return (
     <form
@@ -52,7 +57,7 @@ export const GuessWordGrid = ({
             disabled={rowIndex !== rounds.length}
             gameWordLength={gameWordLength}
             guessWordLetters={rounds[rowIndex]?.letters}
-            onChange={(word) => setGuessWord(word)}
+            onChange={handleLetterCellsChange}
           />
 
           {rowIndex < rounds.length && (
@@ -60,7 +65,11 @@ export const GuessWordGrid = ({
           )}
 
           {rowIndex === rounds.length && (
-            <SubmitButton rowIndex={rowIndex as GameRoundNumber} scoreCellsVariant={variant} />
+            <SubmitButton
+              rowIndex={rowIndex as GameRoundNumber}
+              scoreCellsVariant={variant}
+              disabled={!state.isValid}
+            />
           )}
         </Fragment>
       ))}

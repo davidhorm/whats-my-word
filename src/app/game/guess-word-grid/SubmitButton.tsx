@@ -8,15 +8,16 @@ const getStyle = (scoreCellsVariant: ScoreCellsVariant, rowIndex: GameRoundNumbe
     ? { gridArea: `round-${rowIndex}-score` }
     : { gridColumn: `round-${rowIndex}-matching-letter`, gridRow: `round-${rowIndex}-matching-letter` };
 
-type Props = { scoreCellsVariant: ScoreCellsVariant; rowIndex: GameRoundNumber };
-export const SubmitButton = ({ scoreCellsVariant, rowIndex }: Props) => (
+type Props = { scoreCellsVariant: ScoreCellsVariant; rowIndex: GameRoundNumber; disabled: boolean };
+export const SubmitButton = ({ scoreCellsVariant, rowIndex, disabled }: Props) => (
   <Button
     variant="contained"
     color="primary"
     size="small"
     type="submit"
-    className="cursor-pointer rounded-sm border border-black/40 p-0 ring-inset"
+    className="border-black/40 cursor-pointer rounded-sm border p-0 ring-inset"
     style={getStyle(scoreCellsVariant, rowIndex)}
+    disabled={disabled}
   >
     SUBMIT
   </Button>

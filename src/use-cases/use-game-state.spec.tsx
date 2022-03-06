@@ -44,7 +44,7 @@ describe(useGameState.name, () => {
   };
 
   it('should render the guesses for "nephew" with bonus points', () => {
-    const { container } = render(<TestGameState code="HIR" />);
+    const { container } = render(<TestGameState code="OWS" />);
     const firstJsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
     const firstJsonObject = JSON.parse(firstJsonText);
     expect(firstJsonObject).toEqual(defaultGameState);
@@ -118,7 +118,7 @@ describe(useGameState.name, () => {
   });
 
   it('should render the guesses for "ballet" without bonus points', () => {
-    const { container } = render(<TestGameState code="YND" />);
+    const { container } = render(<TestGameState code="BKS" />);
     const firstJsonText = container.querySelector(`#${queryId}`)?.innerHTML || '{}';
     const firstJsonObject = JSON.parse(firstJsonText);
     expect(firstJsonObject).toEqual(defaultGameState);

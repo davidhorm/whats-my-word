@@ -101,6 +101,10 @@ module.exports = {
     'react/require-default-props': 0, // defaultProps will be deprecated. https://twitter.com/dan_abramov/status/1133878326358171650?s=20
     '@typescript-eslint/no-unused-expressions': 0, // disabling because can't do `this && that()`
 
+    // Setting to warn because auto-fix will remove lines as I'm debugging
+    "no-unused-vars": "warn",
+    "@typescript-eslint/no-unused-vars": ["warn"],
+
     // Inspired by https://humanwhocodes.com/blog/2019/01/stop-using-default-exports-javascript-module/
     'import/prefer-default-export': 'off',
 

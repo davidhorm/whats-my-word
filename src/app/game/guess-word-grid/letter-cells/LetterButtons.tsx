@@ -21,7 +21,7 @@ export const LetterButtons = ({ guessWord, rowIndex }: Props) => {
         <button
           key={colIndex}
           name={`${colIndex}`}
-          className={`cursor-pointer rounded-sm border border-black/40 p-0 text-center text-2xl uppercase ring-inset ${
+          className={`border-black/40 cursor-pointer rounded-sm border p-0 text-center text-2xl uppercase ring-inset ${
             colorClassNames[buttonColorIndices[colIndex]]
           }`}
           style={{ gridArea: `round-${rowIndex}-letter-${colIndex}` }}
