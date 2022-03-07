@@ -11,6 +11,8 @@ import {
   SubmitButton,
 } from './guess-word-grid';
 
+const initialState = { guessWord: '', isValid: false };
+
 type GuessWordGridProp = Omit<ClientGameState, 'validationRule'> &
   Pick<ComponentProps<typeof ScoreCells>, 'variant'> &
   ComponentProps<typeof CodeLabel>;
@@ -25,11 +27,12 @@ export const GuessWordGrid = ({
   variant,
   submitGuessWord,
 }: GuessWordGridProp) => {
-  const [state, setState] = useState({ guessWord: '', isValid: false });
+  const [state, setState] = useState(initialState);
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     !!submitGuessWord && submitGuessWord(state.guessWord);
+    setState(initialState);
   };
 
   const handleLetterCellsChange = useCallback(
