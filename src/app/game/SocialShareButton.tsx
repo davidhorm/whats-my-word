@@ -1,5 +1,5 @@
 import Button from '@material-ui/core/Button';
-import { ShareSvg } from '../../components/icons';
+import { ReactComponent as ShareSvg } from '../../components/icons/share.svg';
 import type { ClientGameState } from '../../use-cases/use-game-state';
 
 type Props = Pick<ClientGameState, 'emojiResults' | 'totalScore'>;

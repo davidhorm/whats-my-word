@@ -29,9 +29,7 @@ export const LetterCells = ({ gameWordLength, guessWordLetters, rowIndex, disabl
   const inputProps = Array.from({ length: guessWordLength }).map((_, colIndex) => ({
     disabled,
     required: true,
-    className: `rounded-sm border border-black/40 p-0 ring-inset uppercase text-2xl text-center ${
-      disabled && 'bg-zinc-500/25 text-black/40'
-    } ${state.word.length === guessWordLength && !state.isValid && 'border-error text-error'}`,
+    className: `${state.word.length === guessWordLength && !state.isValid && 'border-error text-error'}`,
     style: { gridArea: `round-${rowIndex}-letter-${colIndex}` },
     id: `round-${rowIndex}-letter-${colIndex}`,
   }));

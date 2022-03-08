@@ -13,6 +13,7 @@ type Props = Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> & {
 
 export const IndividualCharacterInputs = ({
   amount = 5,
+  disabled,
   inputProps = [],
   pattern = '^[a-zA-Z]{1}$',
   password = false,
@@ -66,11 +67,14 @@ export const IndividualCharacterInputs = ({
     <>
       {characterArray.map((char, index) => {
         const valueProps = !!value ? { value: char, disabled: true } : {};
+        const { className, ...otherInputProps } = inputProps[index];
 
         return (
           <input
+            className={`rounded-sm border border-black/40 p-0 text-center text-2xl uppercase ring-inset focus:outline-primary focus-visible:outline-primary disabled:bg-zinc-500/25 disabled:text-black/40 ${className}`}
             type={password ? 'password' : 'text'}
             key={index}
+            disabled={disabled}
             onKeyUp={handleKeyUp}
             onChange={handleCharacterChange}
             name={'input' + index}
@@ -78,7 +82,7 @@ export const IndividualCharacterInputs = ({
             maxLength={1}
             style={{ width: size, height: size }}
             {...valueProps}
-            {...inputProps[index]}
+            {...otherInputProps}
           />
         );
       })}

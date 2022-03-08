@@ -4,7 +4,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Dispatch, SetStateAction } from 'react';
-import { ChevronDownSvg } from '../../../components/icons';
+import { ReactComponent as ChevronDownSvg } from '../../../components/icons/chevron-down.svg';
 import { useInitGameState } from '../../../use-cases/use-init-game-state';
 
 type Props = { setCode: Dispatch<SetStateAction<string>> };

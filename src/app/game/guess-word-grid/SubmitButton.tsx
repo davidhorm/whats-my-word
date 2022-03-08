@@ -15,7 +15,7 @@ export const SubmitButton = ({ scoreCellsVariant, rowIndex, disabled }: Props) =
     color="primary"
     size="small"
     type="submit"
-    className="border-black/40 cursor-pointer rounded-sm border p-0 ring-inset"
+    className="cursor-pointer rounded-sm border border-black/40 p-0 ring-inset"
     style={getStyle(scoreCellsVariant, rowIndex)}
     disabled={disabled}
   >
