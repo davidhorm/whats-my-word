@@ -1,5 +1,4 @@
 import { BrowserRouter } from 'react-router-dom';
-import '../src/App.css';
 import '../src/index.css';
 
 export const parameters = {
@@ -18,9 +17,7 @@ export const parameters = {
 export const decorators = [
   (Story) => (
     <BrowserRouter>
-      <main className="main">
-        <Story />
-      </main>
+      <Story />
     </BrowserRouter>
   ),
 ];

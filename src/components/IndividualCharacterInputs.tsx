@@ -67,7 +67,7 @@ export const IndividualCharacterInputs = ({
     <>
       {characterArray.map((char, index) => {
         const valueProps = !!value ? { value: char, disabled: true } : {};
-        const { className, ...otherInputProps } = inputProps[index];
+        const { className, ...otherInputProps } = inputProps[index] || {};
 
         return (
           <input
