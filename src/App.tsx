@@ -7,7 +7,7 @@ import { Game, NewGameMenu } from './app/index';
 export const App = () => (
   <Routes>
     <Route
-      path="/whats-my-word"
+      path="/"
       element={
         <div className="mx-auto max-w-md font-sans antialiased">
           <Outlet />

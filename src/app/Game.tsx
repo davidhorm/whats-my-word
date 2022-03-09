@@ -1,6 +1,6 @@
 import Button from '@material-ui/core/Button';
 import { useEffect } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { ReactComponent as LeftArrowSvg } from '../components/icons/left-arrow.svg';
 import { useGameState } from '../use-cases/use-game-state';
 import { GuessWordGrid } from './game/GuessWordGrid';
@@ -11,7 +11,6 @@ export const Game = () => {
   const { code } = useParams();
   const { clientGameState } = useGameState({ code });
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     // Focus on next row of inputs after guess submitted
@@ -32,11 +31,7 @@ export const Game = () => {
     <main className="mt-4 flex flex-col items-center gap-4">
       <GuessWordGrid {...clientGameState} code={code!} variant="CORRECTNESS" />
       <SocialShareButton emojiResults={clientGameState.emojiResults} totalScore={clientGameState.totalScore} />
-      <Button
-        variant="outlined"
-        startIcon={<LeftArrowSvg />}
-        onClick={() => navigate('/' + location.pathname.split('/')[1])}
-      >
+      <Button variant="outlined" startIcon={<LeftArrowSvg />} onClick={() => navigate('/')}>
         Main Menu
       </Button>
     </main>
