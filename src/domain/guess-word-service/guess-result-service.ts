@@ -67,7 +67,7 @@ const scoreRemainingLetters = ({
     const foundLetterIndex = remainingActualLetters.indexOf(item.guessLetter);
     if (foundLetterIndex === -1) return { ...item, emoji: EMOJI.NON_EXISTING };
 
-    remainingActualLetters.splice(foundLetterIndex);
+    remainingActualLetters.splice(foundLetterIndex, 1);
     return { ...item, emoji: EMOJI.NON_MATCHING };
   });
 

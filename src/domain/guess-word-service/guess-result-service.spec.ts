@@ -50,4 +50,17 @@ describe(CalculateGuessResult.name, () => {
       },
     );
   });
+
+  describe(`Misc Scoring Scenarios`, () => {
+    it.each`
+      gameWord    | guessWord | round | expectedScore
+      ${'egests'} | ${'set'}  | ${4}  | ${{ emojiResult: '⬛⬛⬛🟩🟨🟨', matchingLetters: 1, nonMatchingLetters: 2, score: 1500 }}
+    `(
+      `WHEN { gameWord: '$gameWord', guessWord: '$guessWord', roundNumber: $round }, THEN { score: $expectedScore }`,
+      ({ gameWord, guessWord, round, expectedScore }) => {
+        const actualScore = CalculateGuessResult(gameWord, guessWord, round);
+        expect(actualScore).toEqual(expectedScore);
+      },
+    );
+  });
 });
