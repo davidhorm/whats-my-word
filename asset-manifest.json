@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/whats-my-word/static/css/main.6b13b9cd.css",
-    "main.js": "/whats-my-word/static/js/main.6be94cc7.js",
+    "main.js": "/whats-my-word/static/js/main.6de9777f.js",
     "static/media/logo.svg": "/whats-my-word/static/media/logo.e2c5bd32074382c7ca63ff6c395b9cc1.svg",
     "index.html": "/whats-my-word/index.html",
     "static/media/copy.svg": "/whats-my-word/static/media/copy.ea7393bc1d5f2645d16f91a2ed2473cb.svg",
@@ -10,10 +10,10 @@
     "static/media/left-arrow.svg": "/whats-my-word/static/media/left-arrow.2fef35eeafc00c7019a071b741b60fdd.svg",
     "static/media/chevron-down.svg": "/whats-my-word/static/media/chevron-down.df8cff322bbce4e43349a7f4abb55dd6.svg",
     "main.6b13b9cd.css.map": "/whats-my-word/static/css/main.6b13b9cd.css.map",
-    "main.6be94cc7.js.map": "/whats-my-word/static/js/main.6be94cc7.js.map"
+    "main.6de9777f.js.map": "/whats-my-word/static/js/main.6de9777f.js.map"
   },
   "entrypoints": [
     "static/css/main.6b13b9cd.css",
-    "static/js/main.6be94cc7.js"
+    "static/js/main.6de9777f.js"
   ]
 }
