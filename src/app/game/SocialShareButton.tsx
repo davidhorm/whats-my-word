@@ -1,18 +1,22 @@
 import Button from '@material-ui/core/Button';
 import { ReactComponent as ShareSvg } from '../../components/icons/share.svg';
+import type { GameWordCode } from '../../domain/game-word-service';
 import type { ClientGameState } from '../../use-cases/use-game-state';
 
-type Props = Pick<ClientGameState, 'emojiResults' | 'totalScore'>;
-export const SocialShareButton = ({ emojiResults, totalScore }: Props) =>
-  emojiResults ? (
+type Props = { code: GameWordCode } & Pick<ClientGameState, 'emojiResults' | 'totalScore'>;
+export const SocialShareButton = ({ emojiResults, totalScore, code }: Props) => {
+  const challengeText = window.history.length > 1 ? ' Can you beat that?!' : '';
+  const text = `I scored ${totalScore.toLocaleString()} (code: ${code})!${challengeText}\n${emojiResults}\n`;
+
+  return emojiResults ? (
     <Button
       variant="contained"
       color="primary"
       startIcon={<ShareSvg />}
       onClick={async () =>
         navigator.share({
-          title: "What's My Word?",
-          text: `Can you beat my score of ${totalScore}?!\n\n${emojiResults}`,
+          title: document.title,
+          text,
           url: window.location.href,
         })
       }
@@ -20,3 +24,4 @@ export const SocialShareButton = ({ emojiResults, totalScore }: Props) =>
       Share
     </Button>
   ) : null;
+};

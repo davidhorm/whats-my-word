@@ -30,7 +30,11 @@ export const Game = () => {
   return (
     <main className="mt-4 flex flex-col items-center gap-4">
       <GuessWordGrid {...clientGameState} code={code!} variant="CORRECTNESS" />
-      <SocialShareButton emojiResults={clientGameState.emojiResults} totalScore={clientGameState.totalScore} />
+      <SocialShareButton
+        code={code}
+        emojiResults={clientGameState.emojiResults}
+        totalScore={clientGameState.totalScore}
+      />
       <Button variant="outlined" startIcon={<LeftArrowSvg />} onClick={() => navigate('/')}>
         Main Menu
       </Button>
