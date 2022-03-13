@@ -6,7 +6,8 @@ import type { ClientGameState } from '../../use-cases/use-game-state';
 type Props = { code: GameWordCode } & Pick<ClientGameState, 'emojiResults' | 'totalScore'>;
 export const SocialShareButton = ({ emojiResults, totalScore, code }: Props) => {
   const challengeText = window.history.length > 1 ? ' Can you beat that?!' : '';
-  const text = `I scored ${totalScore.toLocaleString()} (code: ${code})!${challengeText}\n${emojiResults}\n`;
+  const firstLine = `I scored ${totalScore.toLocaleString()} (code: ${code})!${challengeText}`;
+  const text = `${firstLine}\n${emojiResults}\n${window.location.href}`;
 
   return emojiResults ? (
     <Button
@@ -15,9 +16,7 @@ export const SocialShareButton = ({ emojiResults, totalScore, code }: Props) => 
       startIcon={<ShareSvg />}
       onClick={async () =>
         navigator.share({
-          title: document.title,
           text,
-          url: window.location.href,
         })
       }
     >
